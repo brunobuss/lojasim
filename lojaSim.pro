@@ -58,9 +58,16 @@ TARGET = lojaSim_$${VERSION}
 ## ADICIONEM OS ARQUIVOS AQUI ##
 # Arquivos .h
 #HEADERS += src/bla.h
+HEADERS += src/cliente.h
+HEADERS += src/clientsNames.h
+HEADERS += src/globaldef.h
+HEADERS += src/sellerNames.h
+HEADERS += src/seller.h
 
 # Arquivos .cpp
 #SOURCES += src/bla.cpp
+SOURCES += src/cliente.cpp
+SOURCES += src/seller.cpp
 
 # Arquivos .ui (QTDesigner)
 #FORMS += src/meuform.ui
