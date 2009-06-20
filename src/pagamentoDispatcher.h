@@ -9,20 +9,24 @@ class pagamentoDispatcher : public QThread
     Q_OBJECT
 
 public:
+    pagamentoDispatcher(relatorio* relatorio);
     void run();
 
 signals:
-    void chegouCliente(cliente c, QTime tempo);
-    void chegouCaixa(caixa c, QTime tempo);
-    void iniciouPagamento(caixa cx, cliente c, QTime tempo);
+    void registerLog(QString str);
 
 public slot:
     void adicionaCliente(cliente c);
     void retornaCaixa(caixa c);
 
 private:
-    QList<vendedor> lV; //Lista dos caixas livres
-    QList<caixa> lC; //Lista dos clientes esperando para efetuarem o pagamento de seus produtos.
+    QMutex mutex;
+    relatorio* rlt;
+
+    QList<cliente> lC; //Lista dos clientes esperando para efetuarem o pagamento de seus produtos.
+    QList<caixa> lCL; //Lista dos caixas livres
+    
+    void iniciaThreadPagamento(cliente c, caixa cx);
 };
 
 #endif

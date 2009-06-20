@@ -2,7 +2,6 @@
 #define LOGSYS_H
 
 #include <QThread>
-#include <logMessage.h>
 
 class logSys : public QThread
 {
@@ -13,10 +12,10 @@ public:
     void printReport();
 
 public slot:
-    void reciveLog(logMessage reg);
+    void reciveLog(QString msg);    
 
 private:
-    QList<logMessage> qlog;
+    QList<QString> qlog;
 };
 
 

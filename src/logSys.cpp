@@ -10,7 +10,7 @@ void logSys::printReport()
     /*Faz print no console do relatório atual*/
 }
 
-void logSys::reciveLog(logMessage reg)
+void logSys::reciveLog(QString msg)
 {
-    qlog.append(reg);
+    qlog.append(msg);   
 }

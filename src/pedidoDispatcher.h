@@ -9,20 +9,24 @@ class pedidoDispatcher : public QThread
     Q_OBJECT
 
 public:
+    pedidoDispatcher(relatorio* relatorio);
     void run();
 
 signals:
-    void chegouPedido(pedido p, QTime tempo);
-    void chegouEstoquista(estoquista e, QTime tempo);
-    void iniciouReestoque(estoquista e, pedido p, QTime tempo);
+    void registerLog(QString str);
 
 public slot:
     void adicionaPedido(pedido p);
     void retornaEstoquista(estoquista e);
 
 private:
+    QMutex mutex;
+    relatorio* rlt;
+
     QList<pedido> lP; //Lista dos pedidos de re-estoque pendentes.
     QList<estoquista> lE; //Lista dos estoquistas livres.
+
+    void iniciaThreadReposicao(QList<pedido> lP, estoquista p);
 };
 
 #endif
