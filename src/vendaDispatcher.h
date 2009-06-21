@@ -3,7 +3,6 @@
 
 #include <QThread>
 #include <globaldef.h>
-#include <relatorio.h>
 
 //Thread que faz o match de um cliente com um vendedor e dispara uma thread de venda
 class vendaDispatcher : public QThread
@@ -11,7 +10,7 @@ class vendaDispatcher : public QThread
     Q_OBJECT
 
 public:
-    vendaDispatcher(relatorio* relatorio);
+    vendaDispatcher();
     void run();
 
 signals:
@@ -23,7 +22,6 @@ public slot:
 
 private:
     QMutex mutex;
-    relatorio* rlt;
     
     QList<vendedor> lV; //Lista dos vendedores disponíveis.
     QList<cliente> lC; //Lista dos clientes esperando para serem atendidos.

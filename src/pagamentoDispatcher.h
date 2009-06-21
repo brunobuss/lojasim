@@ -9,7 +9,7 @@ class pagamentoDispatcher : public QThread
     Q_OBJECT
 
 public:
-    pagamentoDispatcher(relatorio* relatorio);
+    pagamentoDispatcher();
     void run();
 
 signals:
@@ -21,7 +21,6 @@ public slot:
 
 private:
     QMutex mutex;
-    relatorio* rlt;
 
     QList<cliente> lC; //Lista dos clientes esperando para efetuarem o pagamento de seus produtos.
     QList<caixa> lCL; //Lista dos caixas livres

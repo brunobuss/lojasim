@@ -63,11 +63,21 @@ HEADERS += src/clientsNames.h
 HEADERS += src/globaldef.h
 HEADERS += src/sellerNames.h
 HEADERS += src/seller.h
+HEADERS += src/estoquista.h
+HEADERS += src/caixa.h
+HEADERS += src/pagamentoDispatcher.h
+HEADERS += src/pedidoDispatcher.h
+HEADERS += src/vendaDispatcher.h
 
 # Arquivos .cpp
 #SOURCES += src/bla.cpp
 SOURCES += src/cliente.cpp
 SOURCES += src/seller.cpp
+SOUCERS += src/estoquista.cpp
+SOUCERS += src/caixa.cpp
+SOUCERS += src/pagamentoDispatcher.cpp
+SOUCERS += src/pedidoDispatcher.cpp
+SOUCERS += src/vendaDispatcher.cpp
 
 # Arquivos .ui (QTDesigner)
 #FORMS += src/meuform.ui

@@ -2,14 +2,19 @@
 
 vendaDispatcher::vendaDispatcher()
 {
+	int i;
+	Seller a;
 
-    /*TODO: Criar os 10 vendedores */
-
+	for(i = 0; i < QTDVENDEDORES; i++)
+	{
+		a.setID(i);
+		a.setName(sellerName[i]);
+		lV.push_back(a);
+	}
 }
 
-void vendaDispatcher::run(relatorio* relatorio)
+void vendaDispatcher::run()
 {
-    rlt = relatorio;
     exec();
 }
 

@@ -10,11 +10,15 @@
 #define MAXCLIENTLASTNAMES	20
 #define MAXP			15
 #define MINP			5
-#define QTDVENDEDOR		10
+#define QTDVENDEDORES		10
 #define PROBVENDPREF		30 //[0...100]
 #define PROBCOMPRAMENOS		70 //[0...100]
 #define MAXSELLERNAMES		10	
 #define QNT_MAX_CLIENTES 	20
+#define QTDCAIXAS		2
+#define QTDESTOQUISTAS		3
+#define MAXESTOQUISTANAMES	3
+#define MAXCAIXANAMES		2
 
 //memsagem de erro
 #define ERROR_INDEX_OUT		-1

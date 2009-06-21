@@ -1,10 +1,17 @@
 #include <pagamentoDispatcher.h>
 
-pagamentoDispatcher(relatorio* relatorio)
+pagamentoDispatcher()
 {
-    rlt = relatorio;
+   	caixa a;
 
-    /* TODO: Gera os 2 operadores de caixas */
+	a.setID(0);
+	a.setName(caixaNames[0]);
+	lCL.push_back(a);
+
+	a.setID(1);
+	a.setName(caixaNames[1]);
+	lCL.push_back(a);
+
 }
 
 void pagamentoDispatcher::run()

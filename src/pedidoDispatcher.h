@@ -9,7 +9,7 @@ class pedidoDispatcher : public QThread
     Q_OBJECT
 
 public:
-    pedidoDispatcher(relatorio* relatorio);
+    pedidoDispatcher();
     void run();
 
 signals:
@@ -21,7 +21,6 @@ public slot:
 
 private:
     QMutex mutex;
-    relatorio* rlt;
 
     QList<pedido> lP; //Lista dos pedidos de re-estoque pendentes.
     QList<estoquista> lE; //Lista dos estoquistas livres.
