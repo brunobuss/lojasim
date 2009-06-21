@@ -11,19 +11,19 @@ class pedidoThread : public QThread
 	Q_OBJECT
 
 public:
-    pedidoThread(QList<Pedido> pedidos, Estoquista estoq);
+    pedidoThread(QList<Pedido*> pedidos, Estoquista *estoq);
     void run();
 
 signals:
-    void finalizouPedido(Estoquista e);
+    void finalizouPedido(Estoquista *e);
     void registerLog(QString log);
 
 public slots:
     void realizaPedido();
 
 private:
-   QList<Pedido> lP;
-   Estoquista e;
+   QList<Pedido*> lP;
+   Estoquista *e;
 
 };
 

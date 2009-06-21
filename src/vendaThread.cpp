@@ -17,6 +17,6 @@ void vendaThread::realizaVenda()
 
 	/* TODO: Faz a venda */
 
-	emit finalizouVenda(*s);
-	emit finalizouVenda(*c);
+	emit finalizouVenda(s);
+	emit finalizouVenda(c);
 }

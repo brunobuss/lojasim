@@ -20,16 +20,16 @@ signals:
     void registerLogCompra(logMessageCompra lc);
 
 public slots:
-    void adicionaPedido(Pedido p);
-    void retornaEstoquista(Estoquista e);
+    void adicionaPedido(Pedido *p);
+    void retornaEstoquista(Estoquista *e);
 
 private:
     QMutex mutex;
 
-    QList<Pedido> lP; //Lista dos pedidos de re-estoque pendentes.
-    QList<Estoquista> lE; //Lista dos estoquistas livres.
+    QList<Pedido*> lP; //Lista dos pedidos de re-estoque pendentes.
+    QList<Estoquista*> lE; //Lista dos estoquistas livres.
 
-    void iniciaThreadReposicao(QList<Pedido> lP, Estoquista p);
+    void iniciaThreadReposicao(QList<Pedido*> lP, Estoquista *p);
 };
 
 #endif

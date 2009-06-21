@@ -11,12 +11,12 @@ class vendaThread : public QThread
     Q_OBJECT
 
 public:
-    vendaThread(Cliente* cl, Seller* sl);
+    vendaThread(Cliente *cl, Seller *sl);
     void run();
 
 signals:
-    void finalizouVenda(Seller s);
-    void finalizouVenda(Cliente c);
+    void finalizouVenda(Seller *s);
+    void finalizouVenda(Cliente *c);
     void registerLog(QString log);
 
 public slots:

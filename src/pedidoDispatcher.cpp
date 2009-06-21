@@ -2,18 +2,21 @@
 
 pedidoDispatcher::pedidoDispatcher()
 {
-    Estoquista a;
+    Estoquista *a;
     
-    a.setID(QTDVENDEDORES);
-    a.setName(estoquistaNames[0]);
+    a = new Estoquista();
+    a->setID(QTDVENDEDORES);
+    a->setName(estoquistaNames[0]);
     lE.push_back(a);
 
-    a.setID(QTDVENDEDORES+1);
-    a.setName(estoquistaNames[1]);
+    a = new Estoquista();
+    a->setID(QTDVENDEDORES+1);
+    a->setName(estoquistaNames[1]);
     lE.push_back(a);
 
-    a.setID(QTDVENDEDORES+2);
-    a.setName(estoquistaNames[2]);
+    a = new Estoquista();
+    a->setID(QTDVENDEDORES+2);
+    a->setName(estoquistaNames[2]);
     lE.push_back(a);
 }
 
@@ -22,7 +25,7 @@ void pedidoDispatcher::run()
     exec();
 }
 
-void pedidoDispatcher::adicionaPedido(Pedido p)
+void pedidoDispatcher::adicionaPedido(Pedido *p)
 {
     mutex.lock();
     lP.push_back(p);
@@ -38,7 +41,7 @@ void pedidoDispatcher::adicionaPedido(Pedido p)
     mutex.unlock();
 }
 
-void pedidoDispatcher::retornaEstoquista(Estoquista e)
+void pedidoDispatcher::retornaEstoquista(Estoquista *e)
 {
     mutex.lock();
     if(lP.size() > QTDMINPEDIDOS)
@@ -50,7 +53,7 @@ void pedidoDispatcher::retornaEstoquista(Estoquista e)
     mutex.unlock();
 }
 
-void pedidoDispatcher::iniciaThreadReposicao(QList<Pedido> lP, Estoquista p)
+void pedidoDispatcher::iniciaThreadReposicao(QList<Pedido*> lP, Estoquista *p)
 {
     /* TODO: Disparar uma nova thread */
 }

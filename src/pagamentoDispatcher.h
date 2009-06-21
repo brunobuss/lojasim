@@ -21,15 +21,15 @@ signals:
     void registerLog(QString str);
 
 public slots:
-    void adicionaCliente(Cliente c);
-    void retornaCaixa(Caixa c);
+    void adicionaCliente(Cliente *c);
+    void retornaCaixa(Caixa *c);
 
 private:
-	void iniciaThreadPagamento(Cliente c, Caixa cx);
+	void iniciaThreadPagamento(Cliente *c, Caixa *cx);
 	
 	QMutex mutex;
-    QList<Cliente> lC; //Lista dos clientes esperando para efetuarem o pagamento de seus produtos.
-    QList<Caixa> lCL; //Lista dos caixas livres 
+    QList<Cliente*> lC; //Lista dos clientes esperando para efetuarem o pagamento de seus produtos.
+    QList<Caixa*> lCL; //Lista dos caixas livres 
     
 	
 };

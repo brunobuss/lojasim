@@ -1,6 +1,6 @@
 #include <pedidoThread.h>
 
-pedidoThread::pedidoThread(QList<Pedido> pedidos, Estoquista estoq)
+pedidoThread::pedidoThread(QList<Pedido*> pedidos, Estoquista *estoq)
 {
 	lP = pedidos;
 	e = estoq;

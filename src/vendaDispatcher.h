@@ -18,8 +18,8 @@ public:
     void run();
 
 public slots:
-    void adicionaCliente(Cliente c);
-    void retornaVendedor(Seller v);
+    void adicionaCliente(Cliente *c);
+    void retornaVendedor(Seller *v);
 	
 signals:
     void registerLog(QString str);
@@ -28,11 +28,11 @@ signals:
 private:
     QMutex mutex;
     
-    QList<Seller> lV; //Lista dos vendedores disponíveis.
-    QList<Cliente> lC; //Lista dos clientes esperando para serem atendidos.
+    QList<Seller*> lV; //Lista dos vendedores disponíveis.
+    QList<Cliente*> lC; //Lista dos clientes esperando para serem atendidos.
 
     //Verifica de algum cliente da fila de espera tem o vendedor v como vendedor preferencial.
-    int verificaVendedorPreferencial(Seller v);
-    void iniciaThreadVenda(Cliente c, Seller v);
+    int verificaVendedorPreferencial(Seller *v);
+    void iniciaThreadVenda(Cliente *c, Seller *v);
 };
 #endif

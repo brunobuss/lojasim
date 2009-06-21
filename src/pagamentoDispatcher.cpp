@@ -2,14 +2,16 @@
 
 pagamentoDispatcher::pagamentoDispatcher()
 {
-   	Caixa a;
+   	Caixa *a;
 
-	a.setID(0);
-	a.setName(caixaNames[0]);
+	a = new Caixa();
+	a->setID(0);
+	a->setName(caixaNames[0]);
 	lCL.push_back(a);
 
-	a.setID(1);
-	a.setName(caixaNames[1]);
+	a = new Caixa();
+	a->setID(1);
+	a->setName(caixaNames[1]);
 	lCL.push_back(a);
 
 }
@@ -19,13 +21,13 @@ void pagamentoDispatcher::run()
     exec();
 }
 
-void pagamentoDispatcher::adicionaCliente(Cliente c)
+void pagamentoDispatcher::adicionaCliente(Cliente *c)
 {
     mutex.lock();
 
     if(!lCL.isEmpty())
     {
-        Caixa cx = lCL.takeFirst();
+        Caixa *cx = lCL.takeFirst();
         iniciaThreadPagamento(c, cx);
     }
     else
@@ -36,12 +38,12 @@ void pagamentoDispatcher::adicionaCliente(Cliente c)
     mutex.unlock();
 }
 
-void pagamentoDispatcher::retornaCaixa(Caixa cx)
+void pagamentoDispatcher::retornaCaixa(Caixa *cx)
 {
     mutex.lock();
     if(!lC.isEmpty())
     {
-        Cliente c = lC.takeFirst();
+        Cliente *c = lC.takeFirst();
         iniciaThreadPagamento(c, cx);
     }
     else
@@ -51,7 +53,7 @@ void pagamentoDispatcher::retornaCaixa(Caixa cx)
     mutex.unlock();
 }
 
-void pagamentoDispatcher::iniciaThreadPagamento(Cliente c, Caixa cx)
+void pagamentoDispatcher::iniciaThreadPagamento(Cliente *c, Caixa *cx)
 {
     /* TODO: Disparar uma nova thread */
 }

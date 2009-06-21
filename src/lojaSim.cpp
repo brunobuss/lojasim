@@ -43,9 +43,6 @@ void lojaSim::executaSimulador(int argc, char* argv[])
 
 
     app->exec();
-
-
-
 }
 
 int main(int argc, char* argv[])

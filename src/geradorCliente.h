@@ -15,7 +15,7 @@ public:
 	void run();
 
 signals:
-	void geraCliente(Cliente c);
+	void geraCliente(Cliente &c);
 	void geraRelatorioDiario(void);
 
 public slots:
