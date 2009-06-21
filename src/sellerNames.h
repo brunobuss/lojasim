@@ -4,9 +4,8 @@
 #include <QtCore>
 #include <globaldef.h>
 
-const static QString sellerName[MAXSELLERNAMES] = { 	"Horacio","Monica","Cebolinha","Cascao",
-																							"Magali","Bidu","Astronauta","Bilu",
-																							"Sansao","Franjinha"};
+const static QString sellerName[MAXSELLERNAMES] = {"Horacio","Monica","Gabriela","Cristiano", "Magali",
+                                                   "Paulo","Reinaldo","Fabiana","Bruno","Thiago"};
 
 #endif //SELLERNAMES_H
 
