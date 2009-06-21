@@ -2,7 +2,7 @@
 
 pagamentoDispatcher()
 {
-   	caixa a;
+   	Caixa a;
 
 	a.setID(0);
 	a.setName(caixaNames[0]);
@@ -19,7 +19,7 @@ void pagamentoDispatcher::run()
     exec();
 }
 
-void pagamentoDispatcher::adicionaCliente(cliente c)
+void pagamentoDispatcher::adicionaCliente(Cliente c)
 {
     mutex.lock();
 
@@ -36,7 +36,7 @@ void pagamentoDispatcher::adicionaCliente(cliente c)
     mutex.unlock();
 }
 
-void pagamentoDispatcher::retornaCaixa(caixa cx)
+void pagamentoDispatcher::retornaCaixa(Caixa cx)
 {
     mutex.lock();
     if(!lC.isEmpty())
@@ -51,7 +51,7 @@ void pagamentoDispatcher::retornaCaixa(caixa cx)
     mutex.unlock();
 }
 
-void pagamentoDispatcher::iniciaThreadPagamento(cliente c, caixa cx)
+void pagamentoDispatcher::iniciaThreadPagamento(Cliente c, Caixa cx)
 {
     /* TODO: Disparar uma nova thread */
 }

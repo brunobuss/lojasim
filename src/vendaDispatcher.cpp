@@ -19,7 +19,7 @@ void vendaDispatcher::run()
 }
 
 
-void vendaDispatcher::adicionaCliente(cliente c)
+void vendaDispatcher::adicionaCliente(Cliente c)
 {  
     //Para garantir que é thread-safe... só deixa que 1 modifique a lista por vez.
     mutex.lock();
@@ -43,7 +43,7 @@ void vendaDispatcher::adicionaCliente(cliente c)
 
     if(!lV.isEmpty())
     {
-        cliente v = lV.takeFirst();
+        Cliente v = lV.takeFirst();
         iniciaThreadVenda(c, v);
     }
     else
@@ -54,7 +54,7 @@ void vendaDispatcher::adicionaCliente(cliente c)
     mutex.unlock();
 }
 
-void vendaDispatcher::retornaVendedor(vendedor v)
+void vendaDispatcher::retornaVendedor(Seller v)
 {
     //Para garantir que é thread-safe... só deixa que 1 modifique a lista por vez.
     mutex.lock();
@@ -67,7 +67,7 @@ void vendaDispatcher::retornaVendedor(vendedor v)
     }
     else if(!lC.isEmpty())
     {
-        cliente c = lC.takeFirst();
+        Cliente c = lC.takeFirst();
         iniciaThreadVenda(c, v);
     }
     else
@@ -78,7 +78,7 @@ void vendaDispatcher::retornaVendedor(vendedor v)
 }
 
 //Verifica de algum cliente da fila de espera tem o vendedor v como vendedor preferencial.
-int vendaDispatcher::verificaVendedorPreferencial(vendedor v)
+int vendaDispatcher::verificaVendedorPreferencial(Seller v)
 {   
     for(int i = 0; i < lC.size(); i++)
     {

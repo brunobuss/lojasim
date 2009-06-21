@@ -77,14 +77,14 @@ HEADERS += src/logSys.h
 SOURCES += src/lojaSim.cpp
 SOURCES += src/cliente.cpp
 SOURCES += src/seller.cpp
-SOUCERS += src/estoquista.cpp
-SOUCERS += src/caixa.cpp
-SOUCERS += src/vendaDispatcher.cpp
-SOUCERS += src/pedidoDispatcher.cpp
-SOUCERS += src/pagamentoDispatcher.cpp
-HEADERS += src/pedido.cpp
-HEADERS += src/relatorio.cpp
-HEADERS += src/logSys.cpp
+SOURCES += src/estoquista.cpp
+SOURCES += src/caixa.cpp
+SOURCES += src/vendaDispatcher.cpp
+SOURCES += src/pedidoDispatcher.cpp
+SOURCES += src/pagamentoDispatcher.cpp
+SOURCES += src/pedido.cpp
+SOURCES += src/relatorio.cpp
+SOURCES += src/logSys.cpp
 
 # Arquivos .ui (QTDesigner)
 #FORMS += src/meuform.ui
