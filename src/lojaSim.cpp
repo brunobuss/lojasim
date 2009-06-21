@@ -1,22 +1,38 @@
 #include <lojaSim.h>
 
-void lojaSim::executaSimulador(int argc, char* argv[])
+lojaSim::lojaSim(int argc, char* argv[])
 {
+
     QCoreApplication* app = new QCoreApplication(argc, argv);
-    QSharedMemory* prdDispSM = new QSharedMemory("produtosDisponiveis");
-    
-    if(prdDispSM->create(sizeof(int)*40))
+
+    QTimer::singleShot(500, this, SLOT(executaSimulador()));
+
+    app->exec();
+}
+
+void lojaSim::executaSimulador()
+{
+    dsm.setKey("lojaSimDisp");
+
+    if(dsm.create(sizeof(int)*40))
     {
-        int* p = (int*)prdDispSM->data();
-        qsrand(time(NULL));
-        for(int i = 0; i < QTDPROD; i++)p[i] = 20+qrand()%11;
+	qDebug("Regiao de memoria criada.");
     }
     else
     {
-        qDebug("Falha ao criar a região de memória compartilhada.");
-        exit(ERROR_SHAREDMEMORY_FAILED);
+        qDebug("Falha ao criar a regiao de memoria compartilhada.");
+	QString msg = dsm.errorString();
+	qDebug() << msg;
+	if(!dsm.attach())
+	{
+            exit(ERROR_SHAREDMEMORY_FAILED);
+	}
     }
 
+    int* p = (int*)dsm.data();
+    qsrand(time(NULL));
+    for(int i = 0; i < QTDPROD; i++)p[i] = 20+qrand()%11;
+ 
     /* Prepara e lanca todas as threads */
     logSys* ls = new logSys();
     
@@ -24,7 +40,7 @@ void lojaSim::executaSimulador(int argc, char* argv[])
     pagamentoDispatcher* pd = new pagamentoDispatcher();
     pedidoDispatcher* ped = new pedidoDispatcher();
 
-    //geradorCliente* gc = new geradorCliente();
+    geradorCliente* gc = new geradorCliente();
     
     connect(vd, SIGNAL(registerLog(QString)), ls, SLOT(receiveLog(QString)));
     connect(vd, SIGNAL(registerLogVenda(logMessageVenda)), ls, SLOT(receiveLogVenda(logMessageVenda)));
@@ -32,9 +48,10 @@ void lojaSim::executaSimulador(int argc, char* argv[])
     connect(pd, SIGNAL(registerLog(QString)), ls, SLOT(receiveLog(QString)));
 
     connect(ped, SIGNAL(registerLog(QString)), ls, SLOT(receiveLog(QString)));
-    connect(ped, SIGNAL(registerLog(logMessageCompra)), ls, SLOT(receiveLogCompra(logMessageCompra)));
+    connect(ped, SIGNAL(registerLogCompra(logMessageCompra)), ls, SLOT(receiveLogCompra(logMessageCompra)));
 
-    //connect(gc, SIGNAL(geraRelatorioDiario()), ls, SLOT(geraRelatorioDiario()));
+    connect(gc, SIGNAL(geraRelatorioDiario()), ls, SLOT(geraRelatorioDiario()));
+    connect(gc, SIGNAL(geraCliente(Cliente*)), vd, SLOT(adicionaCliente(Cliente*)));
 
     ls->start();
     vd->start();
@@ -42,14 +59,9 @@ void lojaSim::executaSimulador(int argc, char* argv[])
     ped->start();
 
 
-    app->exec();
 }
 
 int main(int argc, char* argv[])
 {
-
-	lojaSim* sim = new lojaSim();
-    
-	sim->executaSimulador(argc, argv);
-    
+	lojaSim* sim = new lojaSim(argc, argv);
 }

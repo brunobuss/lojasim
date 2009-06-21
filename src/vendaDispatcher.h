@@ -7,6 +7,7 @@
 #include <seller.h>
 #include <sellerNames.h>
 #include <logMessageVenda.h>
+#include <vendaThread.h>
 
 //Thread que faz o match de um cliente com um vendedor e dispara uma thread de venda
 class vendaDispatcher : public QThread

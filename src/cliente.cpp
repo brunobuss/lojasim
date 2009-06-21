@@ -84,7 +84,7 @@ QString Cliente::getNomeID(void)const
 {
 	QString r;
 
-	r = nome + " (" + id + ")";
+	r = nomeCompleto + " (" + QString::number(id) + ")";
 
 	return r;	
 }

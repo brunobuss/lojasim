@@ -4,6 +4,7 @@
 #include<QtCore>
 #include<cliente.h>
 #include<seller.h>
+#include<logMessageVenda.h>
 
 class vendaThread : public QThread
 {
@@ -18,6 +19,7 @@ signals:
     void finalizouVenda(Seller *s);
     void finalizouVenda(Cliente *c);
     void registerLog(QString log);
+    void registerLogVenda(logMessageVenda lm);
 
 public slots:
     void realizaVenda();

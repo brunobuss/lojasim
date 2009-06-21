@@ -9,15 +9,20 @@
 #include <pedidoDispatcher.h>
 #include <logMessageCompra.h>
 #include <logMessageVenda.h>
-
+#include <geradorCliente.h>
 
 class lojaSim: public QObject
 {
 
 	Q_OBJECT
-
 public:
-	void executaSimulador(int argc, char* argv[]);
+	lojaSim(int argc, char* argv[]);
+
+public slots:
+	void executaSimulador();
+
+private:
+	QSharedMemory dsm;
 };
 
 

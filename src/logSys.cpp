@@ -25,7 +25,9 @@ void logSys::receiveLog(QString msg)
     gmut.lock();
     log.append(msg);
 
-    /* TODO: Escrever na tela o que ta acontecendo */
+
+    QTextStream ot(stdout);
+    ot << msg << "\n:";
 
     gmut.unlock();
 }

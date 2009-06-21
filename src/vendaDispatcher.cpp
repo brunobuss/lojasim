@@ -16,6 +16,8 @@ vendaDispatcher::vendaDispatcher()
 
 void vendaDispatcher::run()
 {
+    emit registerLog("Thread do venda Dispatcher sendo iniciada!\n");
+
     exec();
 }
 
@@ -27,16 +29,19 @@ void vendaDispatcher::adicionaCliente(Cliente *c)
 
     if(lC.size() > QNT_MAX_CLIENTES)
     {
-            emit registerLog("Cliente " + c->getNomeID() + " chegou e foi embora pois a loja estava cheia.");
+            emit registerLog("Cliente " + c->getNomeID() + " chegou e foi embora pois a loja estava cheia. [" +
+			   	QString::number(lC.size()) + "][" + QString::number(lV.size()) + "]");
+	    return;
     }
 
-    emit registerLog("Cliente " + c->getNomeID() + " chegou a loja.");
+    emit registerLog("Cliente " + c->getNomeID() + " chegou a loja. [" + QString::number(lC.size()) + "][" +
+	   QString::number(lV.size()) + "]");
 
     for(int i = 0; i < lV.size(); i++)
     {
         if(lV[i]->getID() == c->getVendedorPref() && lV[i]->podeAtenderClientePref())
         {
-            iniciaThreadVenda(c, lV[i]);
+            iniciaThreadVenda(c, lV.takeAt(i));
             mutex.unlock();
             return;
         }
@@ -53,6 +58,7 @@ void vendaDispatcher::adicionaCliente(Cliente *c)
     }
 
     mutex.unlock();
+    return;
 }
 
 void vendaDispatcher::retornaVendedor(Seller *v)
@@ -91,5 +97,7 @@ int vendaDispatcher::verificaVendedorPreferencial(Seller *v)
 
 void vendaDispatcher::iniciaThreadVenda(Cliente *c, Seller *v)
 {
-    /* TODO: Disparar uma nova thread */
+    vendaThread* novaThread = new vendaThread(c, v);
+    novaThread->start();
+    emit registerLog("Atendendo cliente " + c->getNomeID());
 }
