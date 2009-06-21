@@ -6,7 +6,6 @@
 
 class logMessageCompra
 {
-
 public:
 	logMessageCompra();
 	void setProdutoComprado(int produtoID, int qnt);

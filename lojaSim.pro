@@ -33,10 +33,10 @@ CONFIG += debug
 # Habilitando os warnings do compilador no makefile.
 CONFIG += warn_on
 
-release {
-	DEFINES += QT_NO_DEBUG_OUTPUT
-	DEFINES += QT_NO_WARNING_OUTPUT
-}
+#release {
+#	DEFINES += QT_NO_DEBUG_OUTPUT
+#	DEFINES += QT_NO_WARNING_OUTPUT
+#}
 
 # Versao do lojaSim =]
 VERSION = 1.0.0

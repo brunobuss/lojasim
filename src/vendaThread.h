@@ -4,7 +4,9 @@
 #include<QtCore>
 #include<cliente.h>
 #include<seller.h>
+#include<pedido.h>
 #include<logMessageVenda.h>
+#include<globaldef.h>
 
 class vendaThread : public QThread
 {
@@ -18,10 +20,17 @@ public:
 signals:
     void finalizouVenda(Seller *s);
     void finalizouVenda(Cliente *c);
+    void fazPedidoReposicao(Pedido* p);
     void registerLog(QString log);
-    void registerLogVenda(logMessageVenda lm);
+    void registerLogVenda(logMessageVenda* lm);
 
 private:
+   QSharedMemory dsm;
+   QSharedMemory rsm;
+   
+   int* pD;
+   int* dR;
+
    Cliente* c;
    Seller* s;
 };

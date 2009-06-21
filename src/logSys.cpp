@@ -25,25 +25,30 @@ void logSys::receiveLog(QString msg)
     gmut.lock();
     log.append(msg);
 
-
     QTextStream ot(stdout);
     ot << msg << "\n:";
 
     gmut.unlock();
 }
 
-void logSys::receiveLogCompra(logMessageCompra lc)
+void logSys::receiveLogCompra(logMessageCompra* lc)
 {
     cmut.lock();
-    lCompra.append(lc);
-    receiveLog(lc.getLogMessage());
+    lCompra.append(*lc);
+
+    qDebug() << lc->getLogMessage();
+
+    receiveLog(lc->getLogMessage());
     cmut.unlock();
 }
 
-void logSys::receiveLogVenda(logMessageVenda lv)
+void logSys::receiveLogVenda(logMessageVenda* lv)
 {
     vmut.lock();
-    lVenda.append(lv);
-    receiveLog(lv.getLogMessage());
+    lVenda.append(*lv);
+
+    qDebug() << lv->getLogMessage();
+
+    receiveLog(lv->getLogMessage());
     vmut.unlock();
 }

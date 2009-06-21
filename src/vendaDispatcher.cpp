@@ -97,8 +97,9 @@ void vendaDispatcher::iniciaThreadVenda(Cliente *c, Seller *v)
 {
     vendaThread* novaThread = new vendaThread(c, v);
     connect(novaThread, SIGNAL(registerLog(QString)), this, SIGNAL(registerLog(QString)));
-    connect(novaThread, SIGNAL(registerLogVenda(logMessageVenda)), this, SIGNAL(registerLogVenda(logMessageVenda)));
+    connect(novaThread, SIGNAL(registerLogVenda(logMessageVenda*)), this, SIGNAL(registerLogVenda(logMessageVenda*)));
     connect(novaThread, SIGNAL(finalizouVenda(Seller*)), this, SLOT(retornaVendedor(Seller*)));
     connect(novaThread, SIGNAL(finalizouVenda(Cliente*)), this, SIGNAL(passaClienteParaCaixa(Cliente*)));
+    connect(novaThread, SIGNAL(fazPedidoReposicao(Pedido*)), this, SIGNAL(passaPedidoParaEstoque(Pedido*)));
     novaThread->start();
 }

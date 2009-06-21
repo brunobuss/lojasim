@@ -12,8 +12,9 @@ lojaSim::lojaSim(int argc, char* argv[])
 
 void lojaSim::executaSimulador()
 {
-    dsm.setKey("lojaSimDisp");
 
+    // Prepara regioes de memoria compartilhada */
+    dsm.setKey(SM_PROD_ESTOQUE);
     if(dsm.create(sizeof(int)*QTDPROD*2))
     {
 	qDebug("Regiao de memoria criada.");
@@ -33,6 +34,29 @@ void lojaSim::executaSimulador()
     qsrand(time(NULL));
     for(int i = 0; i < QTDPROD; i++)p[i] = 20+qrand()%11;
  
+    rsm.setKey(SM_PROD_REPRIMIDO);
+    if(rsm.create(sizeof(int)*QTDPROD*2))
+    {
+	qDebug("Regiao de memoria criada.");
+    }
+    else
+    {
+        qDebug("Falha ao criar a regiao de memoria compartilhada.");
+	QString msg = rsm.errorString();
+	qDebug() << msg;
+	if(!rsm.attach())
+	{
+            exit(ERROR_SHAREDMEMORY_FAILED);
+	}
+    }
+
+    p = (int*)rsm.data();
+    qsrand(time(NULL));
+    for(int i = 0; i < QTDPROD; i++)p[i] = 0;
+
+
+
+
     /* Prepara e lanca todas as threads */
     logSys* ls = new logSys();
     
@@ -43,13 +67,14 @@ void lojaSim::executaSimulador()
     geradorCliente* gc = new geradorCliente();
     
     connect(vd, SIGNAL(registerLog(QString)), ls, SLOT(receiveLog(QString)));
-    connect(vd, SIGNAL(registerLogVenda(logMessageVenda)), ls, SLOT(receiveLogVenda(logMessageVenda)));
+    connect(vd, SIGNAL(registerLogVenda(logMessageVenda*)), ls, SLOT(receiveLogVenda(logMessageVenda*)));
     connect(vd, SIGNAL(passaClienteParaCaixa(Cliente*)), pd, SLOT(adicionaCliente(Cliente*)));
+    connect(vd, SIGNAL(passaPedidoParaEstoque(Pedido*)), ped, SLOT(adicionaPedido(Pedido*)));
 
     connect(pd, SIGNAL(registerLog(QString)), ls, SLOT(receiveLog(QString)));
 
     connect(ped, SIGNAL(registerLog(QString)), ls, SLOT(receiveLog(QString)));
-    connect(ped, SIGNAL(registerLogCompra(logMessageCompra)), ls, SLOT(receiveLogCompra(logMessageCompra)));
+    connect(ped, SIGNAL(registerLogCompra(logMessageCompra*)), ls, SLOT(receiveLogCompra(logMessageCompra*)));
 
     connect(gc, SIGNAL(geraRelatorioDiario()), ls, SLOT(geraRelatorioDiario()));
     connect(gc, SIGNAL(geraCliente(Cliente*)), vd, SLOT(adicionaCliente(Cliente*)));
@@ -58,8 +83,6 @@ void lojaSim::executaSimulador()
     vd->start();
     pd->start();
     ped->start();
-
-
 }
 
 int main(int argc, char* argv[])

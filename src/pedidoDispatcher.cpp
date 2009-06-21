@@ -28,6 +28,9 @@ void pedidoDispatcher::run()
 void pedidoDispatcher::adicionaPedido(Pedido *p)
 {
     mutex.lock();
+
+    emit registerLog("Chegou pedido de reposicao para o produto " + QString::number(p->getID()));
+
     lP.push_back(p);
     if(!lE.isEmpty())
     {

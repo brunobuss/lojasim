@@ -6,7 +6,6 @@
 
 class logMessageVenda
 {
-
 public:
 	logMessageVenda(int clientID, int vendedorID);
 	void setProdutoVendido(int produtoID, int qnt);

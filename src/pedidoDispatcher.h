@@ -17,7 +17,7 @@ public:
 
 signals:
     void registerLog(QString str);
-    void registerLogCompra(logMessageCompra lc);
+    void registerLogCompra(logMessageCompra* lc);
 
 public slots:
     void adicionaPedido(Pedido *p);

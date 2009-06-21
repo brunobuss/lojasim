@@ -14,8 +14,8 @@ public:
 
 public slots:
     void receiveLog(QString msg);
-    void receiveLogCompra(logMessageCompra lc);
-    void receiveLogVenda(logMessageVenda lv);
+    void receiveLogCompra(logMessageCompra* lc);
+    void receiveLogVenda(logMessageVenda* lv);
     void geraRelatorioDiario();
 
 private:

@@ -5,6 +5,7 @@
 #include <globaldef.h>
 #include <cliente.h>
 #include <seller.h>
+#include <pedido.h>
 #include <sellerNames.h>
 #include <logMessageVenda.h>
 #include <vendaThread.h>
@@ -24,8 +25,9 @@ public slots:
 	
 signals:
     void registerLog(QString str);
-    void registerLogVenda(logMessageVenda lm);
-    void passaClienteParaCaixa(Cliente*);
+    void registerLogVenda(logMessageVenda* lm);
+    void passaClienteParaCaixa(Cliente* c);
+    void passaPedidoParaEstoque(Pedido* p);
 
 private:
     QMutex mutex;
