@@ -29,13 +29,11 @@ void vendaDispatcher::adicionaCliente(Cliente *c)
 
     if(lC.size() > QNT_MAX_CLIENTES)
     {
-            emit registerLog("Cliente " + c->getNomeID() + " chegou e foi embora pois a loja estava cheia. [" +
-			   	QString::number(lC.size()) + "][" + QString::number(lV.size()) + "]");
+            emit registerLog("Cliente " + c->getNomeID() + " chegou e foi embora pois a loja estava cheia.");
 	    return;
     }
 
-    emit registerLog("Cliente " + c->getNomeID() + " chegou a loja. [" + QString::number(lC.size()) + "][" +
-	   QString::number(lV.size()) + "]");
+    emit registerLog("Cliente " + c->getNomeID() + " chegou a loja.");
 
     for(int i = 0; i < lV.size(); i++)
     {
@@ -98,6 +96,9 @@ int vendaDispatcher::verificaVendedorPreferencial(Seller *v)
 void vendaDispatcher::iniciaThreadVenda(Cliente *c, Seller *v)
 {
     vendaThread* novaThread = new vendaThread(c, v);
+    connect(novaThread, SIGNAL(registerLog(QString)), this, SIGNAL(registerLog(QString)));
+    connect(novaThread, SIGNAL(registerLogVenda(logMessageVenda)), this, SIGNAL(registerLogVenda(logMessageVenda)));
+    connect(novaThread, SIGNAL(finalizouVenda(Seller*)), this, SLOT(retornaVendedor(Seller*)));
+    connect(novaThread, SIGNAL(finalizouVenda(Cliente*)), this, SIGNAL(passaClienteParaCaixa(Cliente*)));
     novaThread->start();
-    emit registerLog("Atendendo cliente " + c->getNomeID());
 }

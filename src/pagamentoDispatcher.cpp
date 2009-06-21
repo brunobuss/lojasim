@@ -25,6 +25,8 @@ void pagamentoDispatcher::adicionaCliente(Cliente *c)
 {
     mutex.lock();
 
+    emit registerLog("Cliente " + c->getNomeID() + " entrou na fila do caixa.");
+
     if(!lCL.isEmpty())
     {
         Caixa *cx = lCL.takeFirst();

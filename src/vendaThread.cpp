@@ -8,15 +8,19 @@ vendaThread::vendaThread(Cliente* cl, Seller* sl)
 
 void vendaThread::run()
 {
-	exec();
-}
+	emit registerLog("Atendendo cliente " + c->getNomeID() + "...");
 
-void vendaThread::realizaVenda()
-{
+	qsrand(time(NULL));
+
+	QThread::msleep(100 * (1 + qrand()%4) );
+
 	/* TODO: Prepara a venda */
 
 	/* TODO: Faz a venda */
 
+
+	emit registerLog("Cliente " + c->getNomeID() + " atendido.");
 	emit finalizouVenda(s);
 	emit finalizouVenda(c);
 }
+

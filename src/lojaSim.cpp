@@ -14,7 +14,7 @@ void lojaSim::executaSimulador()
 {
     dsm.setKey("lojaSimDisp");
 
-    if(dsm.create(sizeof(int)*40))
+    if(dsm.create(sizeof(int)*QTDPROD*2))
     {
 	qDebug("Regiao de memoria criada.");
     }
@@ -44,6 +44,7 @@ void lojaSim::executaSimulador()
     
     connect(vd, SIGNAL(registerLog(QString)), ls, SLOT(receiveLog(QString)));
     connect(vd, SIGNAL(registerLogVenda(logMessageVenda)), ls, SLOT(receiveLogVenda(logMessageVenda)));
+    connect(vd, SIGNAL(passaClienteParaCaixa(Cliente*)), pd, SLOT(adicionaCliente(Cliente*)));
 
     connect(pd, SIGNAL(registerLog(QString)), ls, SLOT(receiveLog(QString)));
 

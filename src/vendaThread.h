@@ -21,9 +21,6 @@ signals:
     void registerLog(QString log);
     void registerLogVenda(logMessageVenda lm);
 
-public slots:
-    void realizaVenda();
-
 private:
    Cliente* c;
    Seller* s;

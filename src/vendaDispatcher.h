@@ -25,6 +25,7 @@ public slots:
 signals:
     void registerLog(QString str);
     void registerLogVenda(logMessageVenda lm);
+    void passaClienteParaCaixa(Cliente*);
 
 private:
     QMutex mutex;
