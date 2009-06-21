@@ -1,6 +1,6 @@
 #include <vendaThread.h>
 
-vendaThread::vendaThread(Cliente cl, Seller sl)
+vendaThread::vendaThread(Cliente* cl, Seller* sl)
 {
 	c = cl;
 	s = sl;
@@ -17,6 +17,6 @@ void vendaThread::realizaVenda()
 
 	/* TODO: Faz a venda */
 
-	emit finalizouVenda(s);
-	emit finalizouVenda(c);
+	emit finalizouVenda(*s);
+	emit finalizouVenda(*c);
 }

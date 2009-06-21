@@ -8,21 +8,23 @@
 class pagamentoThread : public QThread
 {
 
+	Q_OBJECT
+
 public:
-    pagamentoThread(Client cl, Caixa caixa);
+    pagamentoThread(Cliente* cl, Caixa* caixa);
     void run();
 
 signals:
     void finalizouPagamento(Caixa cx);
-    void finalizouPagamento(Client c);
+    void finalizouPagamento(Cliente c);
     void registerLog(QString log);
 
 public slots:
     void realizaPagamento();
 
 private:
-   Cliente c;
-   Caixa cx;
+   Cliente* c;
+   Caixa* cx;
 };
 
 #endif

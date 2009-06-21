@@ -8,21 +8,23 @@
 class vendaThread : public QThread
 {
 
+    Q_OBJECT
+
 public:
-    vendaThread(Client c, Seller s);
+    vendaThread(Cliente* cl, Seller* sl);
     void run();
 
 signals:
     void finalizouVenda(Seller s);
-    void finalizouVenda(Client c);
+    void finalizouVenda(Cliente c);
     void registerLog(QString log);
 
 public slots:
     void realizaVenda();
 
 private:
-   Cliente c;
-   Seller s;
+   Cliente* c;
+   Seller* s;
 };
 
 #endif

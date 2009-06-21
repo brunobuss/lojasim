@@ -8,6 +8,8 @@
 class pedidoThread : public QThread
 {
 
+	Q_OBJECT
+
 public:
     pedidoThread(QList<Pedido> pedidos, Estoquista estoq);
     void run();

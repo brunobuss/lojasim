@@ -1,6 +1,6 @@
-#include <vendaThread.h>
+#include <pagamentoThread.h>
 
-pagamentoThread::pagamentoThread(Cliente cl, Caixa caixa)
+pagamentoThread::pagamentoThread(Cliente* cl, Caixa* caixa)
 {
 	c = cl;
 	cx = caixa;
@@ -17,6 +17,6 @@ void pagamentoThread::realizaPagamento()
 
 	/* TODO: Faz o pagamento */
 
-	emit finalizouVenda(c);
-	emit finalizouVenda(cx);
+	emit finalizouPagamento(*c);
+	emit finalizouPagamento(*cx);
 }

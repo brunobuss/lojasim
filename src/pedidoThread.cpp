@@ -1,4 +1,4 @@
-#include <vendaThread.h>
+#include <pedidoThread.h>
 
 pedidoThread::pedidoThread(QList<Pedido> pedidos, Estoquista estoq)
 {
