@@ -68,6 +68,9 @@ HEADERS += src/caixa.h
 HEADERS += src/vendaDispatcher.h
 HEADERS += src/pedidoDispatcher.h
 HEADERS += src/pagamentoDispatcher.h
+HEADERS += src/pedido.h
+HEADERS += src/relatorio.h
+HEADERS += src/logSys.h
 
 # Arquivos .cpp
 #SOURCES += src/bla.cpp
@@ -79,6 +82,9 @@ SOUCERS += src/caixa.cpp
 SOUCERS += src/vendaDispatcher.cpp
 SOUCERS += src/pedidoDispatcher.cpp
 SOUCERS += src/pagamentoDispatcher.cpp
+HEADERS += src/pedido.cpp
+HEADERS += src/relatorio.cpp
+HEADERS += src/logSys.cpp
 
 # Arquivos .ui (QTDesigner)
 #FORMS += src/meuform.ui

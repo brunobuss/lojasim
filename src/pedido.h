@@ -12,6 +12,6 @@ public:
 private:
 	int id;
 	
-}
+};
 
 #endif //PEDIDO_H

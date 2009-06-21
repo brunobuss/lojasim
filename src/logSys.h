@@ -1,7 +1,7 @@
 #ifndef LOGSYS_H
 #define LOGSYS_H
 
-#include <QThread>
+#include <QtCore>
 
 class logSys : public QThread
 {

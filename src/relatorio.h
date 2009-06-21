@@ -1,7 +1,7 @@
 #ifndef RELATORIO_H
 #define RELATORIO_H
 
-#include <QThread>
+#include <QtCore>
 #include <cliente.h>
 #include <pedido.h>
 

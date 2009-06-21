@@ -1,7 +1,7 @@
 #ifndef VENDADISPATCHER_H
 #define VENDADISPATCHER_H
 
-#include <QThread>
+#include <QtCore>
 #include <globaldef.h>
 #include <cliente.h>
 #include <seller.h>
@@ -15,12 +15,12 @@ public:
     vendaDispatcher();
     void run();
 
-signals:
-    void registerLog(QString str);
-
 public slots:
     void adicionaCliente(Cliente c);
     void retornaVendedor(Seller v);
+	
+signals:
+    void registerLog(QString str);
 
 private:
     QMutex mutex;

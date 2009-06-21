@@ -1,7 +1,7 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
-#include <QString>
+#include <QtCore>
 #include <clientsNames.h>
 #include <globaldef.h>
 

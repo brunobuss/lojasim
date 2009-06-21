@@ -1,7 +1,7 @@
 #ifndef PEDIDODISPATCHER_H
 #define PEDIDODISPATCHER_H
 
-#include <QThread>
+#include <QtCore>
 #include <pedido.h>
 #include <estoquista.h>
 

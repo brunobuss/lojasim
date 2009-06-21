@@ -22,6 +22,7 @@ public:
 	QString getName(void)const;
 	void setID(const int);
 	void setName(const QString);
-}
+	
+};
 
 #endif //CAIXA_H

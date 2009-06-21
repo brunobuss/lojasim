@@ -1,7 +1,7 @@
 #ifndef SELLERNAMES_H
 #define SELLERNAMES_H
 
-#include <QString>
+#include <QtCore>
 #include <globaldef.h>
 
 const QString sellerName[MAXSELLERNAMES] = { 	"Horacio","Monica","Cebolinha","Cascao",

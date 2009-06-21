@@ -1,7 +1,7 @@
 #ifndef CLIENTSNAMES_H
 #define CLIENTSNAMES_H
 
-#include <QString>
+#include <QtCore>
 #include <globaldef.h>
 
 const static QString clientName[MAXCLIENTNAMES] = { "Ultima", "Mata", "Cheiradeira", "Gari",
