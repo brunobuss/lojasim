@@ -18,5 +18,6 @@
 
 //memsagem de erro
 #define ERROR_INDEX_OUT		-1
+#define ERROR_SHAREDMEMORY_FAILED   -2
 
 #endif //GLOBALDEF_H

@@ -15,12 +15,12 @@ int main(int argc, char* argv[])
     {
         int* p = (int*)prdDispSM->data();
         qsrand(time(NULL));
-        for(int i = 0; i < 20; i++)p[i] = qrand()%30;
+        for(int i = 0; i < QTDPROD; i++)p[i] = 20+qrand()%11;
     }
     else
     {
         qDebug("Falha ao criar a região de memória compartilhada.");
-        exit(1);
+        exit(ERROR_SHAREDMEMORY_FAILED);
     }
 
     /* Prepara e lanca todas as threads */
