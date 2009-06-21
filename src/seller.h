@@ -6,20 +6,15 @@
 
 class Seller : public QObject
 {
-	Q_OBJECT
-	
-	int id;
-	QString name;
+    Q_OBJECT
 
 public:
-	Seller();
-	
-	void setName(const QString);
-	void setID(const int);
-	QString getName(void)const;
-	int getID(void)const;
-	
+    Seller();
+    void setName(const QString);
+    QString getName(void)const;
 
+private:
+    QString name;
 };
 
 
