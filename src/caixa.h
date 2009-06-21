@@ -11,7 +11,7 @@ const static QString caixaNames[MAXCAIXANAMES] = { "Mauro" , "Luisa"};
 class Caixa
 {
 	int id;
-	QString nome;
+	QString name;
 
 public:
 	Caixa();

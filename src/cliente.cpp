@@ -1,11 +1,6 @@
 #include <cliente.h>
 
-Cliente::Cliente(const Cliente&)
-{
-
-}
-
-Cliente::Cliente()
+Cliente::Cliente(const int a)
 {
 	int t;
 	int tempid[QTDPROD];
@@ -13,6 +8,8 @@ Cliente::Cliente()
 	int i,j;
 	
 	qsrand(time(NULL));
+
+	id = a;
 
 //Sorteia os produtos
 	maxprod = QTDPROD;
@@ -57,11 +54,6 @@ Cliente::Cliente()
 	
 }
 
-bool Cliente::getDesejaVendedor(void)const
-{
- 		return desejaVendedor;
-}
- 
 bool Cliente::getCompraMenos(void)const
 {
  		return compraMenos;
@@ -88,3 +80,24 @@ int Cliente::getQtdProduto(const int ind)const
 		return ERROR_INDEX_OUT;
 }
 
+QString Cliente::getNomeID(void)const
+{
+	QString r;
+
+	r = nome + " (" + id + ")";
+
+	return r;	
+}
+
+int Cliente::getID(void)const
+{
+	return id;
+}
+
+int Cliente::getVendedorPref(void)const
+{
+	if(desejaVendedor)
+		return idVendedorPreferido;
+	else
+		return -1;
+}

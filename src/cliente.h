@@ -8,16 +8,18 @@
 class Cliente
 {
 public:
-    Cliente();
-    Cliente(const Cliente&);
+    Cliente(const int);
  
-    bool getDesejaVendedor(void)const;
     bool getCompraMenos(void)const;
     int getNumProdutos(void)const;
     int getProduto(const int)const;
     int getQtdProduto(const int)const;
+    QString getNomeID(void)const;
+    int getID(void)const;
+    int getVendedorPref(void)const;
 
 private:
+    int id;
     QString nome;
     QString sobrenome;
     QString nomeCompleto;

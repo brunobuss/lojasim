@@ -19,6 +19,7 @@
 #define QTDESTOQUISTAS		3
 #define MAXESTOQUISTANAMES	3
 #define MAXCAIXANAMES		2
+#define QTDMINPEDIDOS		3
 
 //memsagem de erro
 #define ERROR_INDEX_OUT		-1

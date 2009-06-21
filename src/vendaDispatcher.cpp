@@ -33,7 +33,7 @@ void vendaDispatcher::adicionaCliente(Cliente c)
 
     for(int i = 0; i < lV.size(); i++)
     {
-        if(lV[i].getId() == c.getVendedorPref() && lV[i].podeAtenderClientePref())
+        if(lV[i].getID() == c.getVendedorPref() && lV[i].podeAtenderClientePref())
         {
             iniciaThreadVenda(c, lV[i]);
             mutex.unlock();
@@ -43,7 +43,7 @@ void vendaDispatcher::adicionaCliente(Cliente c)
 
     if(!lV.isEmpty())
     {
-        Cliente v = lV.takeFirst();
+        Seller v = lV.takeFirst();
         iniciaThreadVenda(c, v);
     }
     else
@@ -82,13 +82,13 @@ int vendaDispatcher::verificaVendedorPreferencial(Seller v)
 {   
     for(int i = 0; i < lC.size(); i++)
     {
-        if(lC[i].getVendedorPref() == v.getId())return i;
+        if(lC[i].getVendedorPref() == v.getID())return i;
     }
 
     return -1;
 }
 
-void vendaDispatcher::iniciaThreadVenda(cliente c, vendedor v)
+void vendaDispatcher::iniciaThreadVenda(Cliente c, Seller v)
 {
     /* TODO: Disparar uma nova thread */
 }

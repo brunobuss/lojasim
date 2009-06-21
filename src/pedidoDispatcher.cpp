@@ -4,16 +4,16 @@ pedidoDispatcher::pedidoDispatcher()
 {
     Estoquista a;
     
-    a.setID(MAXSELLER);
-    a.setName(estoquistaName[0]);
+    a.setID(QTDVENDEDORES);
+    a.setName(estoquistaNames[0]);
     lE.push_back(a);
 
-    a.setID(MAXSELLER+1);
-    a.setName(estoquistaName[1]);
+    a.setID(QTDVENDEDORES+1);
+    a.setName(estoquistaNames[1]);
     lE.push_back(a);
 
-    a.setID(MAXSELLER+2);
-    a.setName(estoquistaName[2]);
+    a.setID(QTDVENDEDORES+2);
+    a.setName(estoquistaNames[2]);
     lE.push_back(a);
 }
 

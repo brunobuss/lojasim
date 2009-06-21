@@ -7,7 +7,7 @@ class Pedido
 public:
 	Pedido();
 	int getID(void)const;
-	void set(const int);
+	void setID(const int);
 
 private:
 	int id;

@@ -10,9 +10,18 @@ public:
     Seller();
     void setName(const QString);
     QString getName(void)const;
+    int getID(void)const;
+    void setID(const int);
+    int podeAtenderClientePref(void);
+    void atendeuClientePreferencial();
+    void atendeuCliente();
+    int getTotalClientesAtendidos(void)const;
 
 private:
     QString name;
+    int id;
+    int cntTotalClientes;
+    int cntClientesPref;
 };
 
 

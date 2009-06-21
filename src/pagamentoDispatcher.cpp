@@ -1,6 +1,6 @@
 #include <pagamentoDispatcher.h>
 
-pagamentoDispatcher()
+pagamentoDispatcher::pagamentoDispatcher()
 {
    	Caixa a;
 
@@ -25,7 +25,7 @@ void pagamentoDispatcher::adicionaCliente(Cliente c)
 
     if(!lCL.isEmpty())
     {
-        caixa cx = lCL.takeFirst();
+        Caixa cx = lCL.takeFirst();
         iniciaThreadPagamento(c, cx);
     }
     else
@@ -41,7 +41,7 @@ void pagamentoDispatcher::retornaCaixa(Caixa cx)
     mutex.lock();
     if(!lC.isEmpty())
     {
-        cliente c = lC.takeFirst();
+        Cliente c = lC.takeFirst();
         iniciaThreadPagamento(c, cx);
     }
     else

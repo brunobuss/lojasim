@@ -19,6 +19,9 @@ public slots:
     void pedidoAtendido(Pedido p);
 
 private:
+		
+    QMutex mutex;
+
     QList<Cliente> cL; //lista dos clientes atendidos
     QList<Pedido> pL; //lista dos pedidos de reestoque atendidos
 };
