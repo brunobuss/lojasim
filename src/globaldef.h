@@ -21,6 +21,8 @@
 #define MAXCAIXANAMES		2
 #define QTDMINPEDIDOS		3
 #define MAXTIME			5
+#define UNIDTEMPO		100
+#define	DIA			144000
 
 //memsagem de erro
 #define ERROR_INDEX_OUT		-1

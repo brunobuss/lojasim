@@ -61,6 +61,7 @@ HEADERS += src/pagamentoThread.h
 HEADERS += src/pedidoThread.h
 HEADERS += src/logMessageCompra.h
 HEADERS += src/logMessageVenda.h
+HEADERS += src/geradorCliente.h
 
 # Arquivos .cpp
 SOURCES += src/lojaSim.cpp
@@ -79,6 +80,7 @@ SOURCES += src/pagamentoThread.cpp
 SOURCES += src/pedidoThread.cpp
 SOURCES += src/logMessageCompra.cpp
 SOURCES += src/logMessageVenda.cpp
+SOURCES += src/geradorCliente.cpp
 
 # Arquivos .ui (QTDesigner)
 #FORMS += src/meuform.ui

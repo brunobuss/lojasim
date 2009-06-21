@@ -3,7 +3,7 @@
 
 #include <QtCore>
 #include <globaldef.h>
-#include <Cliente.h>
+#include <cliente.h>
 
 class geradorCliente : public QThread
 {
@@ -11,10 +11,20 @@ class geradorCliente : public QThread
 	
 public:
 	geradorCliente();
-	run();
+	~geradorCliente();
+	void run();
 
 signals:
 	void geraCliente(Cliente c);
+	void geraRelatorioDiario(void);
+
+public slots:
+       void controlaTempo(void);
+	void geraRelatorio(void);
+
+private:
+	QTimer *timer;
+	QTimer *dia;
 
 };
 

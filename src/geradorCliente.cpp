@@ -1,18 +1,40 @@
-#include <geradorClientes.h>
+#include <geradorCliente.h>
 
-geradorClientes::geradorClientes()
-{}
-
-void geradorClientes::run()
+geradorCliente::geradorCliente()
 {
-	int i = 0;
+	timer = new QTimer(this);
+	connect(timer, SIGNAL(timeout()), this, SLOT(geradorClientes()));
+	timer->start(UNIDTEMPO);
+
+	dia = new QTimer(this);
+	connect(timer, SIGNAL(timeout()), this, SLOT(geraRelatorio()));
+	dia->start(DIA);
+}
+
+geradorCliente::~geradorCliente()
+{
+	delete timer;
+	delete dia;
+}
+
+void geradorCliente::run()
+{
+	exec();	
+}
+void geradorCliente::controlaTempo(void)
+{
+	static int i = 0;
+
 	Cliente *cl;
 
-	while(true)
-	{
-		cl = new Cliente(i++);
-		emit geraCliente(*cl);
-		delete cl;
-		msleep(qrand()%(MAXTIME-1) + 1);
-	}
+	cl = new Cliente(i++);
+	emit geraCliente(*cl);
+	delete cl;
+
+	timer->setInterval(UNIDTEMPO*(qrand()%MAXTIME));
+}
+
+void geradorCliente::geraRelatorio(void)
+{
+	emit geraRelatorioDiario();
 }
