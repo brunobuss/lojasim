@@ -8,7 +8,7 @@
 class Cliente
 {
 public:
-    Cliente(const int);
+    Cliente(const int, unsigned int);
  
     bool getCompraMenos(void)const;
     int getNumProdutos(void)const;

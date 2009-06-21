@@ -9,6 +9,8 @@ geradorCliente::geradorCliente()
 	dia = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(geraRelatorio()));
 	dia->start(DIA);
+
+	qsrand(time(NULL));
 }
 
 geradorCliente::~geradorCliente()
@@ -27,7 +29,7 @@ void geradorCliente::controlaTempo(void)
 
 	Cliente *cl;
 
-	cl = new Cliente(i++);
+	cl = new Cliente(i++, qrand());
 	emit geraCliente(cl);
 
 	timer->setInterval(UNIDTEMPO*(qrand()%MAXTIME));

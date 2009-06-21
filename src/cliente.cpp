@@ -1,15 +1,15 @@
 #include <cliente.h>
 
-Cliente::Cliente(const int a)
+Cliente::Cliente(const int ida, unsigned int sid)
 {
 	int t;
 	int tempid[QTDPROD];
 	int maxprod;
 	int i,j;
 	
-	qsrand(time(NULL));
+	id = ida;
 
-	id = a;
+	qsrand(sid);
 
 //Sorteia os produtos
 	maxprod = QTDPROD;
