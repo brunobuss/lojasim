@@ -16,7 +16,6 @@ public:
 
 signals:
     void finalizouPagamento(Caixa *cx);
-    void finalizouPagamento(Cliente *c);
     void registerLog(QString log);
 
 public slots:

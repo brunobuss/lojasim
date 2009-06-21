@@ -8,15 +8,13 @@ pagamentoThread::pagamentoThread(Cliente* cl, Caixa* caixa)
 
 void pagamentoThread::run()
 {
-	exec();
-}
-
-void pagamentoThread::realizaPagamento()
-{
-	/* TODO: Prepara o pagamento */
-
-	/* TODO: Faz o pagamento */
-
+	
+	qsrand(time(NULL));
+	
+	QThread::msleep(200 * (qrand()%4) + 1);
+	
+	emit registerLog("O cliente " + c->getNomeID() + " efetuou o pagameno e saiu da loja");
+	
 	emit finalizouPagamento(cx);
 	
 	delete c;
