@@ -4,10 +4,8 @@
 #include <QtCore>
 #include <globaldef.h>
 
-class Seller : public QObject
+class Seller
 {
-    Q_OBJECT
-
 public:
     Seller();
     void setName(const QString);

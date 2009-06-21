@@ -8,10 +8,8 @@
 const static QString caixaNames[MAXCAIXANAMES] = { "Mauro" , "Luisa"};
 
 
-class Caixa// : public QObject
+class Caixa
 {
-	//Q_OBJECT
-	
 	int id;
 	QString nome;
 

@@ -5,10 +5,8 @@
 #include <clientsNames.h>
 #include <globaldef.h>
 
-class Cliente : public QObject {
-
-    Q_OBJECT
-
+class Cliente
+{
 public:
     Cliente();
     Cliente(const Cliente&);

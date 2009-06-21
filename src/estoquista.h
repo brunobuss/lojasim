@@ -7,10 +7,8 @@
 
 const static QString estoquistaNames[MAXESTOQUISTANAMES] = { "Gabriel" , "Maria", "Antonio"};
 
-class Estoquista //: public QObject
+class Estoquista
 {
-	//Q_OBJECT
-	
 	int id;
 	QString nome;
 

@@ -9,7 +9,7 @@ vendaDispatcher::vendaDispatcher()
 	{
 		a.setID(i);
 		a.setName(sellerName[i]);
-		//lV.push_back(a);
+		lV.push_back(a);
 	}
 }
 
