@@ -4,17 +4,21 @@
 #include <QtCore>
 #include <globaldef.h>
 
-const static QString clientName[MAXCLIENTNAMES] = { "Ultima", "Mata", "Cheiradeira", "Gari",
-																	"Abrilina" , "Pombinha" , "Radigunda" , "Palida",
-																	"Mijardina", "Holofontina", "Frieirento", "Destino",
-																	"Ze", "Chananeco", "Capote", "Telesforo", "Rolando",
-																	"Ressurgente", "Protestado", "Jacinto" };
+const static QString clientName[MAXCLIENTNAMES] = { "Alberto", "Amanda", "Bruno", "Barbara",
+													"Carlos" , "Cristina" , "Daiane" , "Diego",
+													"Edno", "Elmira", "Frederico", "Fernanda",
+													"Gustavo", "Guilhermina", "Henrique", "Helena", "Ingrid",
+													"Igor", "Joao", "Janaina", "Luis", "Leticia", "Melvin", "Mariana",
+                                                    "Nelson", "Naiara", "Olavo", "Ondina", "Pedro", "Patricia", "Quenio", 
+                                                    "Queila", "Roberto", "Rafaela", "Silvio", "Sabrina", "Tito", "Tania"
+                                                    "Umberto", "Ulmira", "Vitor", "Vanessa", "Xexeo", "Xeneide", "Zito", "Zulmira"
+                                                  };
 
 
-const static QString clientLastName[MAXCLIENTLASTNAMES] = { "Barata", "Prazeroso", "Barbuda", "Pinto", 
-																					"Dodoi", "do Brasil", "Cardiaco", "Tarada",
-																					"Tosta Mil Homens", "Pif Paf", "Pequeno",
-																					"Coitadinho", "Aquino Rego", "Colica", "Catarrinho"
-																					"Suvaco" , "Mataquem" , "Rudefuck", "Tereipenis",
-																					"Espreme Caldas" };
+const static QString clientLastName[MAXCLIENTLASTNAMES] = { "Nascimento", "Oliveira", "da Silva", "Andrade", 
+															"Leal", "Brasil", "Gomes", "Vercillo","Tosta Mil Homens",
+                                                            "Vianna", "Borba", "Barbosa", "Rego", "Sobrinho", "Alcantara"
+															"Caricchio" , "Matarazo" , "Rockefeller", "Lima", "Pinheiro"
+                                                          };
+
 #endif //CLIENTSNAMES_H
