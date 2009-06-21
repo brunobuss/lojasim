@@ -57,5 +57,9 @@ void pagamentoDispatcher::retornaCaixa(Caixa *cx)
 
 void pagamentoDispatcher::iniciaThreadPagamento(Cliente *c, Caixa *cx)
 {
-    /* TODO: Disparar uma nova thread */
+	pagamentoThread *pagamento = new pagamentoThread(c,cx);
+	connect(pagamento, SIGNAL(registerLog(QString)), this, SIGNAL(registerLog(QString)));
+  connect(pagamento, SIGNAL(finalizouPagamento(Caixa*)), this, SLOT(retornaCaixa(Caixa*)));
+  pagamento->start();
+	    
 }

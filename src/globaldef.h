@@ -6,7 +6,7 @@
 
 //configuracoes
 #define QTDPROD 		15
-#define MAXCLIENTNAMES 		20
+#define MAXCLIENTNAMES 		40
 #define MAXCLIENTLASTNAMES	20
 #define MAXP			15
 #define MINP			5

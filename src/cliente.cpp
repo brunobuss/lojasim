@@ -17,7 +17,7 @@ Cliente::Cliente(const int ida, unsigned int sid)
   {
   	tempid[i] = i;
   }
-  numProdutos = qrand()%(QTDPROD-1) + 1;
+  numProdutos = (qrand()%(QTDPROD-1)) + 1;
   for(i = 0 ; i < numProdutos; i++)
   {
   	t = qrand()%maxprod;

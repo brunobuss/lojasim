@@ -17,6 +17,7 @@ void pagamentoThread::realizaPagamento()
 
 	/* TODO: Faz o pagamento */
 
-	emit finalizouPagamento(c);
 	emit finalizouPagamento(cx);
+	
+	delete c;
 }
