@@ -1,7 +1,9 @@
 #ifndef RELATORIO_H
 #define RELATORIO_H
 
-#include <QtCore>
+#include <QThread>
+#include <cliente.h>
+#include <pedido.h>
 
 class relatorio : public QThread
 {
@@ -13,12 +15,12 @@ public:
     void run();
 
 public slots:
-    void vendaConcluida(cliente c);
-    void pedidoAtendido(pedido p);
+    void vendaConcluida(Cliente c);
+    void pedidoAtendido(Pedido p);
 
 private:
-    QList<cliente> cL; //lista dos clientes atendidos
-    QList<pedidos> pL; //lista dos pedidos de reestoque atendidos
+    QList<Cliente> cL; //lista dos clientes atendidos
+    QList<Pedido> pL; //lista dos pedidos de reestoque atendidos
 };
 
 

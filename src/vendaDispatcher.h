@@ -3,6 +3,8 @@
 
 #include <QThread>
 #include <globaldef.h>
+#include <cliente.h>
+#include <seller.h>
 
 //Thread que faz o match de um cliente com um vendedor e dispara uma thread de venda
 class vendaDispatcher : public QThread
@@ -16,20 +18,18 @@ public:
 signals:
     void registerLog(QString str);
 
-public slot:
-    void adicionaCliente(cliente c);
-    void retornaVendedor(vendedor v);
+public slots:
+    void adicionaCliente(Cliente c);
+    void retornaVendedor(Seller v);
 
 private:
     QMutex mutex;
     
-    QList<vendedor> lV; //Lista dos vendedores disponíveis.
-    QList<cliente> lC; //Lista dos clientes esperando para serem atendidos.
+    QList<Seller> lV; //Lista dos vendedores disponíveis.
+    QList<Cliente> lC; //Lista dos clientes esperando para serem atendidos.
 
     //Verifica de algum cliente da fila de espera tem o vendedor v como vendedor preferencial.
-    int verificaVendedorPreferencial(vendedor v);
-    void iniciaThreadVenda(cliente c, vendedor v);
+    int verificaVendedorPreferencial(Seller v);
+    void iniciaThreadVenda(Cliente c, Seller v);
 };
-
-
 #endif

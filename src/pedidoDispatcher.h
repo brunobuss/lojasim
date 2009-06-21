@@ -2,6 +2,9 @@
 #define PEDIDODISPATCHER_H
 
 #include <QThread>
+#include <pedido.h>
+#include <estoquista.h>
+
 
 //Thread que faz o match dos pedidos pendentes e os estoquistas e dispara a thread de re-estoque
 class pedidoDispatcher : public QThread
@@ -15,17 +18,17 @@ public:
 signals:
     void registerLog(QString str);
 
-public slot:
-    void adicionaPedido(pedido p);
-    void retornaEstoquista(estoquista e);
+public slots:
+    void adicionaPedido(Pedido p);
+    void retornaEstoquista(Estoquista e);
 
 private:
     QMutex mutex;
 
-    QList<pedido> lP; //Lista dos pedidos de re-estoque pendentes.
-    QList<estoquista> lE; //Lista dos estoquistas livres.
+    QList<Pedido> lP; //Lista dos pedidos de re-estoque pendentes.
+    QList<Estoquista> lE; //Lista dos estoquistas livres.
 
-    void iniciaThreadReposicao(QList<pedido> lP, estoquista p);
+    void iniciaThreadReposicao(QList<Pedido> lP, Estoquista p);
 };
 
 #endif

@@ -1,5 +1,10 @@
 #include <cliente.h>
 
+Cliente::Cliente(const Cliente&)
+{
+
+}
+
 Cliente::Cliente()
 {
 	int t;
@@ -36,7 +41,7 @@ Cliente::Cliente()
 		compraMenos = false;
 	
 	// Configura questoes do Vendedor
-	idVendedorPreferido = qrand()%QTDVENDEDOR;
+	idVendedorPreferido = qrand()%QTDVENDEDORES;
 	t = qrand()%100;
 	if(t < PROBVENDPREF)
 		desejaVendedor = true;

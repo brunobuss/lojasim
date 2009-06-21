@@ -11,7 +11,7 @@ public:
     void run();
     void printReport();
 
-public slot:
+public slots:
     void reciveLog(QString msg);    
 
 private:

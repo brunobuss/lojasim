@@ -1,10 +1,10 @@
 #include<QtCore>
 
-#include<logsys.h>
+#include<logSys.h>
 #include<relatorio.h>
+#include<vendaDispatcher.h>
 #include<pagamentoDispatcher.h>
 #include<pedidoDispatcher.h>
-#include<vendaDispatcher.h>
 
 int main(int argc, char* argv[])
 {
@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
     pagamentoDispatcher* pd = new pagamentoDispatcher();
     pedidoDispatcher* ped = new pedidoDispatcher();
 
-    geradorCliente* gc = new geradorCliente();
+    //geradorCliente* gc = new geradorCliente();
 
     ls->start();
     rel->start();
@@ -40,5 +40,5 @@ int main(int argc, char* argv[])
     pd->start();
     ped->start();
 
-    app.exec();
+    app->exec();
 }

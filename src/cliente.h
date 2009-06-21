@@ -1,4 +1,7 @@
-#include <QtCore>
+#ifndef CLIENTE_H
+#define CLIENTE_H
+
+#include <QString>
 #include <clientsNames.h>
 #include <globaldef.h>
 
@@ -8,6 +11,7 @@ class Cliente : public QObject {
 
 public:
     Cliente();
+    Cliente(const Cliente&);
  
     bool getDesejaVendedor(void)const;
     bool getCompraMenos(void)const;
@@ -27,3 +31,4 @@ private:
     bool compraMenos; 
 };
 
+#endif //CLIENTE_H
