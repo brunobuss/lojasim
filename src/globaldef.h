@@ -5,7 +5,7 @@
 #define LOGM_TYPE_GENERAL 	1
 
 //configuracoes
-#define QTDPROD 		20
+#define QTDPROD 		15
 #define MAXCLIENTNAMES 		20
 #define MAXCLIENTLASTNAMES	20
 #define MAXP			15
@@ -20,6 +20,7 @@
 #define MAXESTOQUISTANAMES	3
 #define MAXCAIXANAMES		2
 #define QTDMINPEDIDOS		3
+#define MAXTIME			5
 
 //memsagem de erro
 #define ERROR_INDEX_OUT		-1
