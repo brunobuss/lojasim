@@ -2,6 +2,8 @@
 #define LOGSYS_H
 
 #include <QtCore>
+#include <logMessageCompra.h>
+#include <logMessageVenda.h>
 
 class logSys : public QThread
 {
@@ -9,13 +11,20 @@ class logSys : public QThread
 
 public:
     void run();
-    void printReport();
 
 public slots:
-    void reciveLog(QString msg);    
+    void receiveLog(QString msg);
+    void receiveLogCompra(logMessageCompra lc);
+    void receiveLogVenda(logMessageVenda lv);
+    void geraRelatorioDiario();
 
 private:
-    QList<QString> qlog;
+    QMutex gmut, cmut, vmut;
+
+    QList<QString> log;
+    QList<logMessageCompra> lCompra;
+    QList<logMessageVenda> lVenda;
+
 };
 
 

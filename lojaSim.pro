@@ -21,7 +21,10 @@ DESTDIR = bin
 # Indica ao qmake que vamos utilizar a biblioteca qt
 # com os modulos core e gui (que sao os que utilizaremos)
 CONFIG += qt
+CONFIG -= gui
 CONFIG += thread
+CONFIG += console
+
 
 # Indica se deve criar um makefile com suporte aos simbolos de debug ou nao
 CONFIG += debug
@@ -30,34 +33,16 @@ CONFIG += debug
 # Habilitando os warnings do compilador no makefile.
 CONFIG += warn_on
 
-# Se estivermos em uma plataforma Windows
-win32 {
-    # Se estiver em modo debug, incluimos as bibliotecas de console para podermos
-    # utilizar funcoes de debug como a qDebug():
-    # http://doc.qtsoftware.com/4.5/qtglobal.html#qDebug
-    debug {
-    CONFIG += console
-    }
-
-    # Então configura de acordo.
-    CONFIG += windows
-}
-
-# Se estivermos em ambiente unix
-unix {
-    CONFIG += x11
-}
-
 
 # Versao do lojaSim =]
-VERSION = 0.0.1
+VERSION = 1.0.0
 
 # Nome do executavel criado
 TARGET = lojaSim_$${VERSION}
 
 ## ADICIONEM OS ARQUIVOS AQUI ##
 # Arquivos .h
-#HEADERS += src/bla.h
+HEADERS += src/lojaSim.h
 HEADERS += src/cliente.h
 HEADERS += src/clientsNames.h
 HEADERS += src/globaldef.h
@@ -74,9 +59,10 @@ HEADERS += src/logSys.h
 HEADERS += src/vendaThread.h
 HEADERS += src/pagamentoThread.h
 HEADERS += src/pedidoThread.h
+HEADERS += src/logMessageCompra.h
+HEADERS += src/logMessageVenda.h
 
 # Arquivos .cpp
-#SOURCES += src/bla.cpp
 SOURCES += src/lojaSim.cpp
 SOURCES += src/cliente.cpp
 SOURCES += src/seller.cpp
@@ -91,6 +77,8 @@ SOURCES += src/logSys.cpp
 SOURCES += src/vendaThread.cpp
 SOURCES += src/pagamentoThread.cpp
 SOURCES += src/pedidoThread.cpp
+SOURCES += src/logMessageCompra.cpp
+SOURCES += src/logMessageVenda.cpp
 
 # Arquivos .ui (QTDesigner)
 #FORMS += src/meuform.ui

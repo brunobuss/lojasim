@@ -4,7 +4,7 @@
 #include <QtCore>
 #include <pedido.h>
 #include <estoquista.h>
-
+#include <logMessageCompra.h>
 
 //Thread que faz o match dos pedidos pendentes e os estoquistas e dispara a thread de re-estoque
 class pedidoDispatcher : public QThread
@@ -17,6 +17,7 @@ public:
 
 signals:
     void registerLog(QString str);
+    void registerLogCompra(logMessageCompra lc);
 
 public slots:
     void adicionaPedido(Pedido p);
