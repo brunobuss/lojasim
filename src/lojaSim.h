@@ -24,6 +24,8 @@ public slots:
 private:
 	QSharedMemory dsm;
 	QSharedMemory rsm;
+	QSharedMemory qsm;
+	QSharedMemory nsm;
 };
 
 

@@ -54,7 +54,46 @@ void lojaSim::executaSimulador()
     qsrand(time(NULL));
     for(int i = 0; i < QTDPROD; i++)p[i] = 0;
 
+    qsm.setKey(SM_PROD_TOTAL);
+    if(qsm.create(sizeof(int)*QTDPROD*2))
+    {
+	qDebug("Regiao de memoria criada.");
+    }
+    else
+    {
+        qDebug("Falha ao criar a regiao de memoria compartilhada.");
+	QString msg = qsm.errorString();
+	qDebug() << msg;
+	if(!qsm.attach())
+	{
+            exit(ERROR_SHAREDMEMORY_FAILED);
+	}
+    }
 
+    p = (int*)qsm.data();
+    qsrand(time(NULL));
+    for(int i = 0; i < QTDPROD; i++)p[i] = 0;
+
+
+    nsm.setKey(SM_PROD_NRO);
+    if(nsm.create(sizeof(int)*QTDPROD*2))
+    {
+	qDebug("Regiao de memoria criada.");
+    }
+    else
+    {
+        qDebug("Falha ao criar a regiao de memoria compartilhada.");
+	QString msg = nsm.errorString();
+	qDebug() << msg;
+	if(!nsm.attach())
+	{
+            exit(ERROR_SHAREDMEMORY_FAILED);
+	}
+    }
+
+    p = (int*)nsm.data();
+    qsrand(time(NULL));
+    for(int i = 0; i < QTDPROD; i++)p[i] = 0;
 
 
     /* Prepara e lanca todas as threads */

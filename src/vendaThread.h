@@ -27,9 +27,13 @@ signals:
 private:
    QSharedMemory dsm;
    QSharedMemory rsm;
+   QSharedMemory qsm;
+   QSharedMemory nsm;
    
    int* pD;
    int* dR;
+   int* pT;
+   int* pN;
 
    Cliente* c;
    Seller* s;

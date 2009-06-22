@@ -32,5 +32,7 @@
 //Segmentos de memoria compartilhada:
 #define SM_PROD_ESTOQUE "lojaSimProdDisp"
 #define SM_PROD_REPRIMIDO "lojaSimDemandaReprimida"
+#define SM_PROD_TOTAL "lojaSimQuantidadeTotal"
+#define SM_PROD_NRO "lojaSimNroCompradores"
 
 #endif //GLOBALDEF_H
