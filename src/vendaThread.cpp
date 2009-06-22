@@ -52,12 +52,12 @@ void vendaThread::run()
 			{
 				if(pD[j] <= qnt)
 				{
-					setProdutoVendido(j, pD[j]);
+					log->setProdutoVendido(j, pD[j]);
 					pD[j] = 0;
 				}
 				else
 				{
-					setProdutoVendido(j, qnt);
+					log->setProdutoVendido(j, qnt);
 					pD[j] -= qnt;	
 				}
 
