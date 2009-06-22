@@ -60,7 +60,7 @@ void vendaThread::run()
 		int qnt = c->getQtdProduto(i);
 
 		dsm.lock();
-			if(pD[j] == 0 || (pD[j] < qnt && c->getCompraMenos() == false))
+			if(pD[j] <= 0 || (pD[j] < qnt && c->getCompraMenos() == false))
 			{
 				rsm.lock();
 				dR[j] += pD[j] - qnt;
@@ -76,7 +76,7 @@ void vendaThread::run()
 					rsm.unlock();
 
 					qsm.lock();
-					pT[j] += pD[j] - qnt;
+					pT[j] += pD[j];
 					qsm.unlock();
 
 					pD[j] = 0;
