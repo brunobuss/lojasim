@@ -15,12 +15,12 @@ public:
 	void run();
 
 signals:
-	void geraCliente(Cliente *c);
-	void geraRelatorioDiario(void);
+	void geraCliente(Cliente *c);       // Sinal que se conecta a fila de clientes de vendaDispatcher
+	void geraRelatorioDiario(void);     // Sinal que se conecta a gerador de relatorio disparado diariamente
 
 public slots:
-       void controlaTempo(void);
-	void geraRelatorio(void);
+       void controlaTempo(void);            // controla o tempo de chegadas de clientes
+	void geraRelatorio(void);           // controla o tempo de geracao de relatorios diarios
 
 private:
 	QTimer *timer;

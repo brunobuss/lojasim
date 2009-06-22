@@ -11,17 +11,20 @@ Cliente::Cliente(const int ida, unsigned int sid)
 
 	qsrand(sid);
 
-//Sorteia os produtos
 	maxprod = QTDPROD;
   for(i = 0; i < QTDPROD; i++)
   {
   	tempid[i] = i;
   }
+
+  //sorteia a quantidade de produtos requeridos
   numProdutos = (qrand()%(QTDPROD-1)) + 1;
   for(i = 0 ; i < numProdutos; i++)
   {
+	  //sorteia um dos n produtos
   	t = qrand()%maxprod;
   	idProdDesejado[i] = tempid[t];
+	//sorteia a quantidade de produtos
   	qtdProdDesejados[i] = qrand()%(MAXP-MINP+1) + MINP;
   	
   	maxprod--;
@@ -30,14 +33,14 @@ Cliente::Cliente(const int ida, unsigned int sid)
   		tempid[j] = tempid[j+1];
   	}
   }
-  // Configura questoes de compra
+  // sorteia a possibilidade de comprar menos
 	t = qrand()%100;
 	if(t < PROBCOMPRAMENOS)
 		compraMenos = true;
 	else
 		compraMenos = false;
 	
-	// Configura questoes do Vendedor
+	// sorteia a possibilidade de ter um vendedor preferido
 	idVendedorPreferido = qrand()%QTDVENDEDORES;
 	t = qrand()%100;
 	if(t < PROBVENDPREF)

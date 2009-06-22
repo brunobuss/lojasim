@@ -19,14 +19,14 @@ protected:
     void run();
 
 signals:
-    void registerLog(QString str);
+    void registerLog(QString str);       // Envia uma mesagem de log
 
 public slots:
-    void adicionaCliente(Cliente *c);
-    void retornaCaixa(Caixa *c);
+    void adicionaCliente(Cliente *c);    // Recebe um cliente para pagamento
+    void retornaCaixa(Caixa *c);         // Recebe um caixa liberado
 
 private:
-    void iniciaThreadPagamento(Cliente *c, Caixa *cx);
+    void iniciaThreadPagamento(Cliente *c, Caixa *cx);  // Dispara uma thread para processar um pagamento
 	
     QMutex mutex;
     QList<Cliente*> lC; //Lista dos clientes esperando para efetuarem o pagamento de seus produtos.

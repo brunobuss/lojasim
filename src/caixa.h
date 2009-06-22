@@ -10,16 +10,16 @@ const static QString caixaNames[MAXCAIXANAMES] = { "Mauro" , "Luisa"};
 
 class Caixa
 {
-	int id;
-	QString name;
+	int id; // identificador do Caixa
+	QString name; // Nome do Caixa
 
 public:
-	Caixa();
+	Caixa(); // Construtor
 
-	int getID(void)const;
-	QString getName(void)const;
-	void setID(const int);
-	void setName(const QString);
+	int getID(void)const;         // retorna o identificador
+	QString getName(void)const;   // retorna o nome do Caixa
+	void setID(const int);        // configura um identificador
+	void setName(const QString);  // configura um nome
 	
 };
 

@@ -16,10 +16,10 @@ class lojaSim: public QObject
 
 	Q_OBJECT
 public:
-	lojaSim(int argc, char* argv[]);
+	lojaSim(int argc, char* argv[]);   // main
 
 public slots:
-	void executaSimulador();
+	void executaSimulador();           // inicia a execucao do simulador
 
 private:
 	QSharedMemory dsm;

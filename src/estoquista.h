@@ -15,10 +15,10 @@ class Estoquista
 public:
 	Estoquista();
 
-	int getID(void)const;
-	QString getName(void)const;
-	void setID(const int);
-	void setName(const QString);
+	int getID(void)const;         // Retorna o identificador
+	QString getName(void)const;   // Retorna o nome do Estoquista
+	void setID(const int);        // Configura um ID
+	void setName(const QString);  // Configura um nome
 	
 };
 

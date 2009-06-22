@@ -7,11 +7,11 @@
 class logMessageVenda
 {
 public:
-	logMessageVenda(int clientID, int vendedorID);
-	void setProdutoVendido(int produtoID, int qnt);
-	int getProdutoVendido(int produtoID);
-	int getVendedor();
-	QString getLogMessage();
+	logMessageVenda(int clientID, int vendedorID);   // Construtor: cadastra o cliente e seu vendedor
+	void setProdutoVendido(int produtoID, int qnt);  // Cadastra a quantidade de produtos vendidos de um tipo
+	int getProdutoVendido(int produtoID);            // Retorna a quantidade vendida de um produto
+	int getVendedor();                               // Retorna o Vendedor
+	QString getLogMessage();                         // Retorna uma string com todos os dados cadastrados
 	
 private:
 	int cID;
