@@ -25,10 +25,10 @@ signals:
     void registerLogVenda(logMessageVenda* lm);
 
 private:
-   QSharedMemory dsm;
-   QSharedMemory rsm;
-   QSharedMemory qsm;
-   QSharedMemory nsm;
+   QSharedMemory dsm; // Estoque int[QTDPROD]
+   QSharedMemory rsm; // reprimidos int[QTDPROD]
+   QSharedMemory qsm; // Total pedidos int[QTDPROD]
+   QSharedMemory nsm; // Pessoas compraram int[QTDPRD]
    
    int* pD;
    int* dR;

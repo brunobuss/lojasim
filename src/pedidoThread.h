@@ -4,6 +4,7 @@
 #include<QtCore>
 #include<pedido.h>
 #include<estoquista.h>
+#include<logMessageCompra.h>
 
 class pedidoThread : public QThread
 {
@@ -11,18 +12,27 @@ class pedidoThread : public QThread
 	Q_OBJECT
 
 public:
-    pedidoThread(QList<Pedido*> pedidos, Estoquista *estoq);
+    pedidoThread(Pedido* pedidos, Estoquista *estoq);
     void run();
 
 signals:
     void finalizouPedido(Estoquista *e);
     void registerLog(QString log);
-
-public slots:
-    void realizaPedido();
+    void registerLogCompra(logMessageCompra* lc);
 
 private:
-   QList<Pedido*> lP;
+   
+   QSharedMemory dsm; // Estoque int[QTDPROD]
+   QSharedMemory rsm; // reprimidos int[QTDPROD]
+   QSharedMemory qsm; // Total pedidos int[QTDPROD]
+   QSharedMemory nsm; // Pessoas compraram int[QTDPRD]
+   
+   int* pD;
+   int* dR;
+   int* pT;
+   int* pN;
+
+   Pedido *p;
    Estoquista *e;
 
 };

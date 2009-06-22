@@ -3,6 +3,7 @@
 pedidoDispatcher::pedidoDispatcher()
 {
     Estoquista *a;
+    int i;
     
     a = new Estoquista();
     a->setID(QTDVENDEDORES);
@@ -18,6 +19,12 @@ pedidoDispatcher::pedidoDispatcher()
     a->setID(QTDVENDEDORES+2);
     a->setName(estoquistaNames[2]);
     lE.push_back(a);
+    
+    for(i = 0; i < QTDPROD; i++)
+    {
+    	lP[i] = 0;
+    }
+    
 }
 
 void pedidoDispatcher::run()
@@ -27,36 +34,57 @@ void pedidoDispatcher::run()
 
 void pedidoDispatcher::adicionaPedido(Pedido *p)
 {
+    int i;
+    Pedido *ped;
     mutex.lock();
-
     emit registerLog("Chegou pedido de reposicao para o produto " + QString::number(p->getID()));
 
-    lP.push_back(p);
-    if(!lE.isEmpty())
+    lP[p->getID()]++;
+    delete p;
+    
+    for(i = 0 ; i< QTDPROD && !lE.empty(); i++)
     {
-	    if(lP.size() > QTDMINPEDIDOS)
-	    {
-		iniciaThreadReposicao(lP, lE.takeFirst());
-		lP.clear();
-	    }
-
+    	if(lP[i] >= MINPEDIDOS)
+    	{
+    		lP[i] = 0;
+    		ped = new Pedido();
+    		ped->setID(i);
+    		iniciaThreadReposicao(ped, lE.takeFirst());
+    	}
     }
+    
     mutex.unlock();
 }
 
 void pedidoDispatcher::retornaEstoquista(Estoquista *e)
 {
+    Pedido *ped;
+    int i;
+    
     mutex.lock();
-    if(lP.size() > QTDMINPEDIDOS)
+    
+    lE.push_back(e);
+    emit registerLog("Um Estoquista foi liberado " + QString::number(e->getID()));
+    
+    for(i = 0 ; i<QTDPROD && !lE.empty(); i++)
     {
-	iniciaThreadReposicao(lP, lE.takeFirst());
-	lP.clear();
+    	if(lP[i] >= MINPEDIDOS)
+    	{
+    		lP[i] = 0;
+    		ped = new Pedido();
+    		ped->setID(i);
+    		iniciaThreadReposicao(ped, lE.takeFirst());
+    	}
     }
 
     mutex.unlock();
 }
 
-void pedidoDispatcher::iniciaThreadReposicao(QList<Pedido*> lP, Estoquista *p)
+void pedidoDispatcher::iniciaThreadReposicao(Pedido* p, Estoquista *e)
 {
-    /* TODO: Disparar uma nova thread */
+    pedidoThread *pedido = new pedidoThread(p,e);
+    connect(pedido, SIGNAL(registerLog(QString)), this, SIGNAL(registerLog(QString)));
+    connect(pedido, SIGNAL(registerLogCompra(logMessageCompra*)), this, SIGNAL(registerLogCompra(logMessageCompra*)));
+    connect(pedido, SIGNAL(retornaEstoquista()), this, SLOT(retornaEstoquista()));
+    pedido->start();
 }

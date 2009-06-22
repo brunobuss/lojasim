@@ -24,6 +24,7 @@
 #define UNIDTEMPO		100
 #define	DIA			144000
 #define PONTO_RESUP		3
+#define MINPEDIDOS		3
 
 //memsagem de erro
 #define ERROR_INDEX_OUT		-1
