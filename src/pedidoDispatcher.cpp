@@ -77,6 +77,6 @@ void pedidoDispatcher::iniciaThreadReposicao(Pedido* p, Estoquista *e)
     pedidoThread *pedido = new pedidoThread(p,e);
     connect(pedido, SIGNAL(registerLog(QString)), this, SIGNAL(registerLog(QString)));
     connect(pedido, SIGNAL(registerLogCompra(logMessageCompra*)), this, SIGNAL(registerLogCompra(logMessageCompra*)));
-    connect(pedido, SIGNAL(finalizouPedido()), this, SLOT(retornaEstoquista()));
+    connect(pedido, SIGNAL(finalizouPedido(Estoquista *)), this, SLOT(retornaEstoquista(Estoquista *);));
     pedido->start();
 }
