@@ -57,23 +57,24 @@ void pedidoThread::run()
 	dR = (int*)rsm.data();
 	pT = (int*)qsm.data();
 	pN = (int*)nsm.data();
-	
-	qsm.lock();
-	tot = pT[idprod];
-	qsm.unlock();
-	
-	nsm.lock();
-	qtd = pN[idprod];
-	nsm.unlock();
-	
-	qtdCompra = ((tot*1.0)/(qtd*1.0))*1.2;
-	
-	rsm.lock();
-	dR[idprod] = 0;
-	rsm.unlock();
-	
+
 	dsm.lock();
-	pD[idprod]+= qtdCompra;
+		qsm.lock();
+
+			tot = pT[idprod];
+			nsm.lock();
+				qtd = pN[idprod];
+			nsm.unlock();
+
+		qsm.unlock();
+	
+		qtdCompra = ((tot*1.0)/(qtd*1.0))*1.2;
+	
+		rsm.lock();
+		dR[idprod] = 0;
+		rsm.unlock();
+	
+		pD[idprod]+= qtdCompra;
 	dsm.unlock();
 	
 	lc->setProdutoComprado(idprod, qtdCompra);
