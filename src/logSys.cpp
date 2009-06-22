@@ -35,9 +35,6 @@ void logSys::receiveLogCompra(logMessageCompra* lc)
 {
     cmut.lock();
     lCompra.append(*lc);
-
-    qDebug() << lc->getLogMessage();
-
     receiveLog(lc->getLogMessage());
     cmut.unlock();
 }
@@ -46,9 +43,6 @@ void logSys::receiveLogVenda(logMessageVenda* lv)
 {
     vmut.lock();
     lVenda.append(*lv);
-
-    qDebug() << lv->getLogMessage();
-
     receiveLog(lv->getLogMessage());
     vmut.unlock();
 }

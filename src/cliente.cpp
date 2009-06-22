@@ -22,7 +22,7 @@ Cliente::Cliente(const int ida, unsigned int sid)
   {
   	t = qrand()%maxprod;
   	idProdDesejado[i] = tempid[t];
-  	qtdProdDesejados[i] = qrand()%(MAXP-MINP) + MINP;
+  	qtdProdDesejados[i] = qrand()%(MAXP-MINP+1) + MINP;
   	
   	maxprod--;
   	for(j = t; j < maxprod; j++)

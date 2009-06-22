@@ -62,6 +62,15 @@ void vendaThread::run()
 		dsm.unlock();
 	}
 
+	if(c->getVendedorPref() == s->getID())
+	{
+		s->atendeuClientePreferencial();
+	}
+	else
+	{
+		s->atendeuCliente();
+	}
+
 	emit registerLog("Cliente " + c->getNomeID() + " atendido.");
 	emit finalizouVenda(s);
 	emit finalizouVenda(c);

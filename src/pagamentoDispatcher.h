@@ -5,6 +5,7 @@
 #include <globaldef.h>
 #include <cliente.h>
 #include <caixa.h>
+#include <pagamentoThread.h>
 
 //Thread que faz o match de um cliente com um caixa disponivel e dispara a thread de pagamento.
 class pagamentoDispatcher: public QThread
