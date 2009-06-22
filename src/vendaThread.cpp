@@ -50,16 +50,27 @@ void vendaThread::run()
 			}
 			else
 			{
-				pD[j] -= qnt;
-				log->setProdutoVendido(j, qnt);
-				if(pD[j] <= PONTO_RESUP)
+				if(pD[j] <= qnt)
 				{
-					Pedido* rep = new Pedido();
-					rep->setID(j);
-					emit fazPedidoReposicao(rep);
+					setProdutoVendido(j, pD[j]);
+					pD[j] = 0;
 				}
+				else
+				{
+					setProdutoVendido(j, qnt);
+					pD[j] -= qnt;	
+				}
+
+
 			}
 		dsm.unlock();
+
+		if(pD[j] <= PONTO_RESUP)
+		{
+			Pedido* rep = new Pedido();
+			rep->setID(j);
+			emit fazPedidoReposicao(rep);
+		}	
 	}
 
 	if(c->getVendedorPref() == s->getID())
