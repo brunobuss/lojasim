@@ -34,24 +34,17 @@ void pedidoDispatcher::run()
 
 void pedidoDispatcher::adicionaPedido(Pedido *p)
 {
-    int i;
-    Pedido *ped;
     mutex.lock();
     emit registerLog("Chegou pedido de reposicao para o produto " + QString::number(p->getID()));
 
     lP[p->getID()]++;
-    delete p;
     
-    for(i = 0 ; i< QTDPROD && !lE.empty(); i++)
+    if(lP[p->getID()] >= MINPEDIDOS && !lE.empty())
     {
-    	if(lP[i] >= MINPEDIDOS)
-    	{
-    		lP[i] = 0;
-    		ped = new Pedido();
-    		ped->setID(i);
-    		iniciaThreadReposicao(ped, lE.takeFirst());
-    	}
+    	lP[p->getID()] = 0;
+    	iniciaThreadReposicao(p, lE.takeFirst());
     }
+    
     
     mutex.unlock();
 }
@@ -59,14 +52,12 @@ void pedidoDispatcher::adicionaPedido(Pedido *p)
 void pedidoDispatcher::retornaEstoquista(Estoquista *e)
 {
     Pedido *ped;
-    int i;
-    
     mutex.lock();
     
     lE.push_back(e);
     emit registerLog("Um Estoquista foi liberado " + QString::number(e->getID()));
     
-    for(i = 0 ; i<QTDPROD && !lE.empty(); i++)
+    for(int i = 0 ; i<QTDPROD; i++)
     {
     	if(lP[i] >= MINPEDIDOS)
     	{
@@ -74,6 +65,7 @@ void pedidoDispatcher::retornaEstoquista(Estoquista *e)
     		ped = new Pedido();
     		ped->setID(i);
     		iniciaThreadReposicao(ped, lE.takeFirst());
+		break;
     	}
     }
 

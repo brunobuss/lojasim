@@ -64,11 +64,11 @@ void logSys::geraRelatorioDiario()
 
 		for(int i = 0; i < QTDVENDEDORES; i++)
 		{
-			rel << "Vendedor " + QString::number(i) + ": " + QString::number(vendedores[i]) +
+			rel << "Vendedor " + QString::number(i+1) + ": " + QString::number(vendedores[i]) +
 				" produtos vendidos.\n";
 			t += vendedores[i];
 		}
-		rel << "TOTAL: " + QString::number(t) + "\n";
+		rel << "TOTAL: " + QString::number(t+1) + "\n";
 
 		rel << "\n\n";
 		rel << "Produtos vendidos:\n";
