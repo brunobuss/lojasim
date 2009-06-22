@@ -51,13 +51,14 @@ void pedidoDispatcher::adicionaPedido(Pedido *p)
 
 void pedidoDispatcher::retornaEstoquista(Estoquista *e)
 {
+	static int i = 0;
     Pedido *ped;
     mutex.lock();
     
     lE.push_back(e);
     emit registerLog("Um Estoquista foi liberado " + QString::number(e->getID()));
     
-    for(int i = 0 ; i < QTDPROD; i++)
+    for( ; i < QTDPROD; i++)
     {
     	if(lP[i] >= MINPEDIDOS)
     	{
@@ -68,6 +69,8 @@ void pedidoDispatcher::retornaEstoquista(Estoquista *e)
 		break;
     	}
     }
+    if(i >= QTDPROD)
+	    i = 0;
 
     mutex.unlock();
 }
