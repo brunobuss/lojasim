@@ -77,6 +77,8 @@ void pedidoThread::run()
 	
 		pD[idprod]+= qtdCompra;
 	dsm.unlock();
+
+	emit registerLog("Comprados " + QString::number(qtdCompra) + " para o produto " + QString::number(idprod));
 	
 	lc->setProdutoComprado(idprod, qtdCompra);
 	
