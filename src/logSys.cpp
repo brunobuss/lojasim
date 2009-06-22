@@ -26,6 +26,7 @@ void logSys::receiveLog(QString msg)
     log.append(msg);
 
     QTextStream ot(stdout);
+    msg = "[" + (QTime::currentTime()).toString(Qt::TextDate) +  "] " + msg;
     ot << msg << "\n:";
 
     gmut.unlock();

@@ -26,6 +26,23 @@ QString logMessageVenda::getLogMessage()
 {
 	QString msg;
 
+	bool vendeu = false;
+
+	for(int i = 0; i < QTDPROD; i++)
+	{
+		if(prodVendidos[i] == 0)continue;
+		vendeu = true;
+		break;
+	}
+
+	if(vendeu == false)
+	{
+		msg = QString::fromAscii("O cliente ") + QString::number(cID) +
+		      QString::fromAscii(" nao conseguiu comprar nenhum produto.");
+
+		return msg;
+	}
+
 	msg = QString::fromAscii("Venda realizada pelo vendedor ") + QString::number(vID) +
 	      QString::fromAscii(" para o cliente ") + QString::number(cID) +
 	      QString::fromAscii(":\n");
