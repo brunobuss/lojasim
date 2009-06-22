@@ -5,6 +5,7 @@ pedidoDispatcher::pedidoDispatcher()
     Estoquista *a;
     int i;
     
+    //Cria os estoquistas
     a = new Estoquista();
     a->setID(QTDVENDEDORES);
     a->setName(estoquistaNames[0]);
@@ -38,7 +39,8 @@ void pedidoDispatcher::adicionaPedido(Pedido *p)
     emit registerLog("Chegou pedido de reposicao para o produto " + QString::number(p->getID()));
 
     lP[p->getID()]++;
-    
+   
+    //Verifica se o item chegou na quantidade minima de pedidos de re-estoque
     if(lP[p->getID()] >= MINPEDIDOS && !lE.empty())
     {
     	lP[p->getID()] = 0;
@@ -51,13 +53,14 @@ void pedidoDispatcher::adicionaPedido(Pedido *p)
 
 void pedidoDispatcher::retornaEstoquista(Estoquista *e)
 {
-	static int i = 0;
+    static int i = 0;
     Pedido *ped;
     mutex.lock();
     
     lE.push_back(e);
     emit registerLog("Um Estoquista foi liberado " + QString::number(e->getID()));
     
+    //Procura algum item pendente para ser re-estocado pelo estoquista liberado
     for( ; i < QTDPROD; i++)
     {
     	if(lP[i] >= MINPEDIDOS)

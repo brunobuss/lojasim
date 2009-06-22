@@ -4,7 +4,8 @@ pedidoThread::pedidoThread(Pedido* pedidos, Estoquista *estoq)
 {
 	p = pedidos;
 	e = estoq;
-	
+
+	//Prepara para acesso as Shared Memories	
 	dsm.setKey(SM_PROD_ESTOQUE);
 	if(!dsm.attach())
 	{
@@ -49,7 +50,7 @@ void pedidoThread::run()
 	
 	qsrand(time(NULL));
 	
-	QThread::msleep(200 * (qrand()%4 + 1));
+	QThread::msleep(100 * (qrand()%4 + 1));
 	
 	idprod = p->getID();
 	
@@ -68,7 +69,7 @@ void pedidoThread::run()
 
 		qsm.unlock();
 
-		if(qtd == 0)qtd = 1;	
+		if(qtd == 0)qtd = 1;
 		qtdCompra = ((tot*1.0)/(qtd*1.0))*1.2 + 0.5;
 	
 		rsm.lock();

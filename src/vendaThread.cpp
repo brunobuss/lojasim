@@ -5,6 +5,7 @@ vendaThread::vendaThread(Cliente* cl, Seller* sl)
 	c = cl;
 	s = sl;
 
+	//Preparando o acesso as Shared Memories
 	dsm.setKey(SM_PROD_ESTOQUE);
 	if(!dsm.attach())
 	{
@@ -60,6 +61,8 @@ void vendaThread::run()
 		int qnt = c->getQtdProduto(i);
 
 		dsm.lock();
+			//Verifica se o estoque esta vazio e/ou se o cliente nao
+			//aceita comprar menos itens do que os disponiveis
 			if(pD[j] <= 0 || (pD[j] < qnt && c->getCompraMenos() == false))
 			{
 				rsm.lock();
@@ -68,6 +71,7 @@ void vendaThread::run()
 			}
 			else
 			{
+				//Cliente quer mais itens que os disponiveis, vende o que tiver
 				if(pD[j] <= qnt)
 				{
 					log->setProdutoVendido(j, pD[j]);
@@ -81,6 +85,7 @@ void vendaThread::run()
 
 					pD[j] = 0;
 				}
+				//Venda normal
 				else
 				{
 					log->setProdutoVendido(j, qnt);
@@ -97,6 +102,7 @@ void vendaThread::run()
 	
 			}
 
+		//Verifica necessidade de fazer um pedido de resuprimento
 		rsm.lock();
 		if(pD[j] <= PONTO_RESUP || dR[j] >= PONTO_RESUP)
 		{
