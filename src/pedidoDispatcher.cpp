@@ -57,7 +57,7 @@ void pedidoDispatcher::retornaEstoquista(Estoquista *e)
     lE.push_back(e);
     emit registerLog("Um Estoquista foi liberado " + QString::number(e->getID()));
     
-    for(int i = 0 ; i<QTDPROD; i++)
+    for(int i = 0 ; i < QTDPROD; i++)
     {
     	if(lP[i] >= MINPEDIDOS)
     	{
@@ -77,6 +77,6 @@ void pedidoDispatcher::iniciaThreadReposicao(Pedido* p, Estoquista *e)
     pedidoThread *pedido = new pedidoThread(p,e);
     connect(pedido, SIGNAL(registerLog(QString)), this, SIGNAL(registerLog(QString)));
     connect(pedido, SIGNAL(registerLogCompra(logMessageCompra*)), this, SIGNAL(registerLogCompra(logMessageCompra*)));
-    connect(pedido, SIGNAL(finalizouPedido(Estoquista *)), this, SLOT(retornaEstoquista(Estoquista *);));
+    connect(pedido, SIGNAL(finalizouPedido(Estoquista*)), this, SLOT(retornaEstoquista(Estoquista*)));
     pedido->start();
 }
