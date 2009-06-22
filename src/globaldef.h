@@ -13,7 +13,7 @@
 #define QTDVENDEDORES		10
 #define PROBVENDPREF		30 //[0...100]
 #define PROBCOMPRAMENOS		70 //[0...100]
-#define MAXSELLERNAMES		10	
+#define MAXVENDEDORNAMES	10	
 #define QNT_MAX_CLIENTES 	20
 #define QTDCAIXAS		2
 #define QTDESTOQUISTAS		3
@@ -22,9 +22,10 @@
 #define QTDMINPEDIDOS		3
 #define MAXTIME			5
 #define UNIDTEMPO		100
-#define	DIA			144000
+#define	DIA			(UNIDTEMPO*24*60)
 #define PONTO_RESUP		3
 #define MINPEDIDOS		3
+#define HORARIO_ABERTURA	8
 
 //memsagem de erro
 #define ERROR_INDEX_OUT		-1

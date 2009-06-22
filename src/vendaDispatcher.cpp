@@ -3,13 +3,13 @@
 vendaDispatcher::vendaDispatcher()
 {
 	int i;
-	Seller *a;
+	Vendedor *a;
 
 	for(i = 0; i < QTDVENDEDORES; i++)
 	{
-		a = new Seller();
+		a = new Vendedor();
 		a->setID(i);
-		a->setName(sellerName[i]);
+		a->setName(vendedorName[i]);
 		lV.push_back(a);
 	}
 }
@@ -47,7 +47,7 @@ void vendaDispatcher::adicionaCliente(Cliente *c)
 
     if(!lV.isEmpty())
     {
-        Seller *v = lV.takeFirst();
+        Vendedor *v = lV.takeFirst();
         iniciaThreadVenda(c, v);
     }
     else
@@ -59,7 +59,7 @@ void vendaDispatcher::adicionaCliente(Cliente *c)
     return;
 }
 
-void vendaDispatcher::retornaVendedor(Seller *v)
+void vendaDispatcher::retornaVendedor(Vendedor *v)
 {
     //Para garantir que é thread-safe... só deixa que 1 modifique a lista por vez.
     mutex.lock();
@@ -83,7 +83,7 @@ void vendaDispatcher::retornaVendedor(Seller *v)
 }
 
 //Verifica de algum cliente da fila de espera tem o vendedor v como vendedor preferencial.
-int vendaDispatcher::verificaVendedorPreferencial(Seller *v)
+int vendaDispatcher::verificaVendedorPreferencial(Vendedor *v)
 {   
     for(int i = 0; i < lC.size(); i++)
     {
@@ -93,12 +93,12 @@ int vendaDispatcher::verificaVendedorPreferencial(Seller *v)
     return -1;
 }
 
-void vendaDispatcher::iniciaThreadVenda(Cliente *c, Seller *v)
+void vendaDispatcher::iniciaThreadVenda(Cliente *c, Vendedor *v)
 {
     vendaThread* novaThread = new vendaThread(c, v);
     connect(novaThread, SIGNAL(registerLog(QString)), this, SIGNAL(registerLog(QString)));
     connect(novaThread, SIGNAL(registerLogVenda(logMessageVenda*)), this, SIGNAL(registerLogVenda(logMessageVenda*)));
-    connect(novaThread, SIGNAL(finalizouVenda(Seller*)), this, SLOT(retornaVendedor(Seller*)));
+    connect(novaThread, SIGNAL(finalizouVenda(Vendedor*)), this, SLOT(retornaVendedor(Vendedor*)));
     connect(novaThread, SIGNAL(finalizouVenda(Cliente*)), this, SIGNAL(passaClienteParaCaixa(Cliente*)));
     connect(novaThread, SIGNAL(fazPedidoReposicao(Pedido*)), this, SIGNAL(passaPedidoParaEstoque(Pedido*)));
     novaThread->start();

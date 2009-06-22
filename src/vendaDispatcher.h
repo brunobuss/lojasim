@@ -4,9 +4,9 @@
 #include <QtCore>
 #include <globaldef.h>
 #include <cliente.h>
-#include <seller.h>
+#include <vendedor.h>
 #include <pedido.h>
-#include <sellerNames.h>
+#include <vendedorNames.h>
 #include <logMessageVenda.h>
 #include <vendaThread.h>
 
@@ -25,7 +25,7 @@ public slots:
     void adicionaCliente(Cliente *c);
     //Metodo responsavel por tratar a volta de um vendedor que estava
     //ocupado
-    void retornaVendedor(Seller *v);
+    void retornaVendedor(Vendedor *v);
 	
 signals:
     //Registra uma mensagem de log no sistema.
@@ -41,14 +41,14 @@ private:
     //Semaforo de exlcusao mutua, para controle de acesso as listas.
     QMutex mutex;
     
-    QList<Seller*> lV; //Lista dos vendedores disponíveis.
+    QList<Vendedor*> lV; //Lista dos vendedores disponíveis.
     QList<Cliente*> lC; //Lista dos clientes esperando para serem atendidos.
 
     //Verifica de algum cliente da fila de espera tem o vendedor v como vendedor preferencial.
-    int verificaVendedorPreferencial(Seller *v);
+    int verificaVendedorPreferencial(Vendedor *v);
 
     //Prepara e dispara a thread de venda
-    void iniciaThreadVenda(Cliente *c, Seller *v);
+    void iniciaThreadVenda(Cliente *c, Vendedor *v);
 };
 
 #endif

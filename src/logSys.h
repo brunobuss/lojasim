@@ -22,7 +22,7 @@ public slots:
 private:
     QMutex gmut, cmut, vmut;
 
-    int dia;
+    QTime dia;
 
     QList<QString> log;
     QList<logMessageCompra> lCompra;

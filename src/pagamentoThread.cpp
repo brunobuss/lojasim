@@ -11,7 +11,7 @@ void pagamentoThread::run()
 	
 	qsrand(time(NULL));
 	
-	QThread::msleep(100 * (qrand()%4) + 1);
+	QThread::msleep(UNIDTEMPO * (qrand()%2) + 1);
 	
 	emit registerLog("O cliente " + c->getNomeID() + " efetuou o pagameno e saiu da loja");	
 	emit finalizouPagamento(cx);

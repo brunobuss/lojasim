@@ -2,7 +2,7 @@
 
 logSys::logSys()
 {
-	dia = 1;
+	dia.start();
 }
 
 void logSys::run()
@@ -14,13 +14,15 @@ void logSys::run()
 void logSys::geraRelatorioDiario()
 {
 	bool fail = false;
+	int qnt = dia.elapsed()/DIA;
 
 	gmut.lock();
 	cmut.lock();
 	vmut.lock();
 
+
 	/* TODO: Escrever os trecos aqui */
-	QFile arquivo("relatorio_diario_nro" + QString::number(dia) + ".txt");
+	QFile arquivo("relatorio_diario_nro" + QString::number(qnt) + ".txt");
 
 	if(arquivo.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
 	{
@@ -33,7 +35,7 @@ void logSys::geraRelatorioDiario()
 		for(int i = 0; i < QTDPROD; i++) itens[i] = 0;
 
 
-		rel << "Relatorio referente ao dia " + QString::number(dia) + ":\n\n";
+		rel << "Relatorio referente ao dia " + QString::number(qnt) + ":\n\n";
 		rel << "Vendas realizadas:\n";
 		while(!lVenda.isEmpty())
 		{
@@ -89,22 +91,27 @@ void logSys::geraRelatorioDiario()
 	}
 	else fail = true;
 
-	dia++;
-
 	vmut.unlock();
 	cmut.unlock();
 	gmut.unlock();
 
-	if(fail) receiveLog("Falha ao criar o relatorio do dia " + QString::number(dia-1) + "\n");
+	if(fail) receiveLog("Falha ao criar o relatorio do dia " + QString::number(qnt) + "\n");
 	else receiveLog("Criado relatorio diario com sucesso.");
 }
 
 void logSys::receiveLog(QString msg)
 {
+    int qnt;
     gmut.lock();
 
     QTextStream ot(stdout);
-    msg = "[" + (QTime::currentTime()).toString(Qt::TextDate) +  "] " + msg;
+
+    qnt = dia.elapsed() * 60;
+
+    QTime tempo(HORARIO_ABERTURA, 0, 0, 0);
+    tempo = tempo.addSecs(qnt/UNIDTEMPO);
+
+    msg = "[" + tempo.toString(Qt::TextDate) /*QString::number(qnt/UNIDTEMPO)*/ +  "] " + msg;
     ot << msg << "\n";
 
     log.append(msg);

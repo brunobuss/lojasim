@@ -1,6 +1,6 @@
 #include <vendaThread.h>
 
-vendaThread::vendaThread(Cliente* cl, Seller* sl)
+vendaThread::vendaThread(Cliente* cl, Vendedor* sl)
 {
 	c = cl;
 	s = sl;
@@ -45,7 +45,7 @@ void vendaThread::run()
 
 	qsrand(time(NULL));
 
-	QThread::msleep(100 * (1 + qrand()%4) );
+	QThread::msleep(UNIDTEMPO * (1 + qrand()%2) );
 
 	pD = (int*)dsm.data();
 	dR = (int*)rsm.data();

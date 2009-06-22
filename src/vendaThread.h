@@ -3,7 +3,7 @@
 
 #include<QtCore>
 #include<cliente.h>
-#include<seller.h>
+#include<vendedor.h>
 #include<pedido.h>
 #include<logMessageVenda.h>
 #include<globaldef.h>
@@ -14,12 +14,12 @@ class vendaThread : public QThread
     Q_OBJECT
 
 public:
-    vendaThread(Cliente *cl, Seller *sl);
+    vendaThread(Cliente *cl, Vendedor *sl);
     void run();
 
 signals:
     //Sinais indicando que a venda foi finalizada
-    void finalizouVenda(Seller *s);
+    void finalizouVenda(Vendedor *s);
     void finalizouVenda(Cliente *c);
 
     //Sinal para pedido de reposicao
@@ -41,7 +41,7 @@ private:
    int* pN; //Acesso ao nsm
 
    Cliente* c;
-   Seller* s;
+   Vendedor* s;
 };
 
 #endif

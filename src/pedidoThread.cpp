@@ -50,7 +50,7 @@ void pedidoThread::run()
 	
 	qsrand(time(NULL));
 	
-	QThread::msleep(100 * (qrand()%4 + 1));
+	QThread::msleep(UNIDTEMPO * (qrand()%2 + 1));
 	
 	idprod = p->getID();
 	
