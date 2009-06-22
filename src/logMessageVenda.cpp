@@ -38,7 +38,7 @@ QString logMessageVenda::getLogMessage()
 	if(vendeu == false)
 	{
 		msg = QString::fromAscii("O cliente ") + QString::number(cID) +
-		      QString::fromAscii(" nao conseguiu comprar nenhum produto.");
+		      QString::fromAscii(" nao conseguiu comprar nenhum produto.\n");
 
 		return msg;
 	}
@@ -55,7 +55,11 @@ QString logMessageVenda::getLogMessage()
 		       QString::fromAscii(".\n");
 	}
 
-	msg += QString::fromAscii("\n");
-
 	return msg;
 }
+
+int logMessageVenda::getVendedor()
+{
+	return vID;
+}
+

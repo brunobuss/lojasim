@@ -10,6 +10,7 @@ class logSys : public QThread
     Q_OBJECT
 
 public:
+    logSys();
     void run();
 
 public slots:
@@ -20,6 +21,8 @@ public slots:
 
 private:
     QMutex gmut, cmut, vmut;
+
+    int dia;
 
     QList<QString> log;
     QList<logMessageCompra> lCompra;

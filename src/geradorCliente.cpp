@@ -7,7 +7,7 @@ geradorCliente::geradorCliente()
 	timer->start(UNIDTEMPO);
 
 	dia = new QTimer(this);
-	connect(timer, SIGNAL(timeout()), this, SLOT(geraRelatorio()));
+	connect(dia, SIGNAL(timeout()), this, SLOT(geraRelatorio()));
 	dia->start(DIA);
 
 	qsrand(time(NULL));
