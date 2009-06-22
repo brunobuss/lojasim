@@ -23,7 +23,7 @@ QString logMessageCompra::getLogMessage()
 {
 	QString msg;
 
-	msg = QString::fromAscii("Pedido de re-estoque feito para os seguintes itens:\n");
+	msg = QString::fromAscii("Pedido de re-estoque feito para o seguinte item:\n");
 	for(int i = 0; i < QTDPROD; i++)
 	{
 		if(prodRestoque[i] == 0) continue;
