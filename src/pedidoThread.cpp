@@ -67,7 +67,8 @@ void pedidoThread::run()
 			nsm.unlock();
 
 		qsm.unlock();
-	
+
+		if(qtd == 0)qtd = 1;	
 		qtdCompra = ((tot*1.0)/(qtd*1.0))*1.2;
 	
 		rsm.lock();
